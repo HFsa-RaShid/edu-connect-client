@@ -121,7 +121,7 @@ const Navbar = () => {
             )}
             {userRole === "admin" && (
               <>
-                <NavLink to='/manage-users' className="block py-2">View Users</NavLink>
+                <NavLink to='/viewUsers' className="block py-2">View Users</NavLink>
                 <NavLink to='/viewStudySession' className="block py-2">View all Study Sessions</NavLink>
                 <NavLink to='/manage-users' className="block py-2">View all materials</NavLink>
               </>
