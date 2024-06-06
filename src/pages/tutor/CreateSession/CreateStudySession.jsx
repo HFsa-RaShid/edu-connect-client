@@ -3,13 +3,14 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useAxiosSessions from "../../../HOOKS/useAxiosSessions";
+
+import useAxiosPublic from "../../../HOOKS/useAxiosPublic";
 
 const CreateStudySession = () => {
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [loading, setLoading] = useState(false);
-  const axiosSessions = useAxiosSessions();
+  const axiosPublic = useAxiosPublic();
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -27,7 +28,7 @@ const CreateStudySession = () => {
       status: "pending", 
     };
 
-    axiosSessions.post('/', sessionData)
+    axiosPublic.post('/sessions', sessionData)
       .then(() => {
         toast.success('Session request sent successfully');
         reset(); 
