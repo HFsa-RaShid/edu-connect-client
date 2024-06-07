@@ -4,14 +4,14 @@ import useAxiosPublic from "./useAxiosPublic";
 
 const useApprove = () => {
     const axiosPublic = useAxiosPublic();
-   const {refetch, data: Sessions = []} = useQuery({
-    queryKey: ['Sessions'],
+   const {refetch, data: approveSession = []} = useQuery({
+    queryKey: ['approveSession'],
     queryFn: async () =>{
-        const res = await axiosPublic.get('/sessions') 
+        const res = await axiosPublic.get('/approveSession') 
         return res.data;
     }
    })
-   return [Sessions,refetch]
+   return [approveSession,refetch]
 };
 
 export default useApprove;

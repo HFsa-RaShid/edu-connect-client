@@ -113,10 +113,10 @@ const Navbar = () => {
              {userRole === "tutor" && (
               <>
                 <NavLink to='/create-session' className="block py-2">Create Study Session</NavLink>
-                <NavLink to='/view-sessions' className="block py-2">View Study Sessions</NavLink>
+                <NavLink to='/viewMySession' className="block py-2">View Study Sessions</NavLink>
                 <NavLink to='/create-session' className="block py-2">Upload materials</NavLink>
                 <NavLink to='/view-sessions' className="block py-2"> View all materials</NavLink>
-                <NavLink to='/create-session' className="block py-2">View all notes</NavLink>
+                
               </>
             )}
             {userRole === "admin" && (

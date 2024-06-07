@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import CreateStudySession from "../pages/tutor/CreateSession/CreateStudySession";
 import ViewUsers from "../pages/admin/viewUsers/ViewUsers";
 import ViewStudySessions from "../pages/admin/viewStudySessions/ViewStudySessions";
+import ViewMySession from "../pages/tutor/ViewStudySession/ViewMySession";
 
 
 export const router = createBrowserRouter([
@@ -43,6 +44,11 @@ export const router = createBrowserRouter([
       {
         path: "/viewStudySession",
         element: <ViewStudySessions></ViewStudySessions>,
+        
+      },
+      {
+        path: "/viewMySession",
+        element: <ViewMySession></ViewMySession>,
         
       },
       
