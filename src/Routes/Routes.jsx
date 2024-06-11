@@ -7,6 +7,7 @@ import CreateStudySession from "../pages/tutor/CreateSession/CreateStudySession"
 import ViewUsers from "../pages/admin/viewUsers/ViewUsers";
 import ViewStudySessions from "../pages/admin/viewStudySessions/ViewStudySessions";
 import ViewMySession from "../pages/tutor/ViewStudySession/ViewMySession";
+import RequestApproval from "../pages/tutor/ViewStudySession/RequestApproval";
 
 
 export const router = createBrowserRouter([
@@ -51,6 +52,12 @@ export const router = createBrowserRouter([
         element: <ViewMySession></ViewMySession>,
         
       },
+      {
+        path: "/requestApproval/:id",
+        element: <RequestApproval></RequestApproval>,
+        
+      },
+      
       
         
       ],

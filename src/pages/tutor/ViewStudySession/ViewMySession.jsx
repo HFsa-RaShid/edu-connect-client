@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import useAxiosPublic from "../../../HOOKS/useAxiosPublic";
 import { AuthContext } from '../../../provider/AuthProvider';
 import useAxiosSessionsByTutor from '../../../HOOKS/useAxiosSessionsByTutor';
+import { NavLink } from 'react-router-dom';
 
 const ViewMySession = () => {
     const { user, loading } = useContext(AuthContext);
@@ -39,32 +40,9 @@ const ViewMySession = () => {
         }
     }, [axiosPublic, user, loading,refetch]);
 
-    const sendApprovalRequest = (sessionId) => {
-        axiosPublic.put(`/updateSession/${sessionId}`, { status: 'pending' })
-            .then(() => {
-                setRejectedSessions(prevSessions => prevSessions.filter(session => session._id !== sessionId));
-                Swal.fire({
-                    title: "Request Sent",
-                    text: "Your approval request has been sent.",
-                    icon: "success"
-                });
-            })
-            .catch(error => {
-                console.error('Error sending approval request:', error);
-                Swal.fire({
-                    title: "Error!",
-                    text: "Failed to send approval request.",
-                    icon: "error"
-                });
-            });
-    };
-    
-
-   
-
     return (
         <div className="min-h-screen p-4">
-            <h1 className="text-center font-bold text-3xl mb-4">My Sessions</h1>
+            <h1 className="text-center font-bold text-3xl mb-4 pt-16">My Sessions</h1>
             <Tabs>
                 <TabList>
                     <Tab>Approved Sessions</Tab>
@@ -114,12 +92,12 @@ const ViewMySession = () => {
                                         <td className="border px-4 py-2">{session.date}</td>
                                         <td className="border px-4 py-2">{session.status}</td>
                                         <td className="border px-4 py-2">
-                                            <button 
-                                                onClick={() => sendApprovalRequest(session._id)} 
-                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                            >
+                                            <NavLink to={`/requestApproval/${session._id}`}>
+                                            <button>
                                                 Request Approval
                                             </button>
+                                            </NavLink>
+                                            
                                         </td>
                                     </tr>
                                 ))}
