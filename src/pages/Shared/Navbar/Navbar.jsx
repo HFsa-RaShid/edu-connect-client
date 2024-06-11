@@ -123,7 +123,7 @@ const Navbar = () => {
               <>
                 <NavLink to='/viewUsers' className="block py-2">View Users</NavLink>
                 <NavLink to='/viewStudySession' className="block py-2">View all Study Sessions</NavLink>
-                <NavLink to='/manage-users' className="block py-2">View all materials</NavLink>
+                <NavLink to='/ViewAllMaterials' className="block py-2">View all materials</NavLink>
               </>
             )}
             {userRole === "student" && (

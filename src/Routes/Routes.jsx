@@ -11,6 +11,7 @@ import RequestApproval from "../pages/tutor/ViewStudySession/RequestApproval";
 import UploadMaterialsForm from "../pages/tutor/UploadMaterials/UploadMaterialsForm";
 import UploadMaterials from "../pages/tutor/UploadMaterials/UploadMaterials";
 import ViewMaterials from "../pages/tutor/viewMaterials/ViewMaterials";
+import ViewAllMaterials from "../pages/admin/viewAllMaterials/ViewAllMaterials";
 
 
 export const router = createBrowserRouter([
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: "/viewMaterials",
         element: <ViewMaterials></ViewMaterials>,
+      },
+      {
+        path: "/viewAllMaterials",
+        element: <ViewAllMaterials></ViewAllMaterials>,
       },
       
       

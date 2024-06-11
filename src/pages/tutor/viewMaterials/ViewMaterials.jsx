@@ -1,3 +1,5 @@
+
+
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import useAxiosSecure from '../../../HOOKS/useAxiosSecure';
@@ -10,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const ViewMaterials = () => {
     const { user } = useContext(AuthContext);
     const [materials, setMaterials] = useState([]);
+    const [selectedImage, setSelectedImage] = useState(null);
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
     const [loading, setLoading] = useState(true);
@@ -45,23 +48,23 @@ const ViewMaterials = () => {
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Yes, delete it!"
-                  }).then((result) => {
+                }).then((result) => {
                     if (result.isConfirmed) {
-                      setMaterials(materials.filter(material => material._id !== id));
-                      Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                      });
+                        setMaterials(materials.filter(material => material._id !== id));
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
                     }
-                  });
+                });
             })
             .catch(error => {
                 console.error('Error deleting material:', error);
                 Swal.fire('Error!', 'An error occurred while deleting the material.', 'error');
             });
     };
-    
+
     const handleUpdateClick = (material) => {
         setSelectedMaterial(material);
         setValue('title', material.title);
@@ -91,7 +94,7 @@ const ViewMaterials = () => {
                             toast.success('Materials updated successfully');
                             reset();
                             document.getElementById('update_modal').close();
-                        } 
+                        }
                     })
                     .catch(error => {
                         console.error('Error updating material:', error);
@@ -108,8 +111,14 @@ const ViewMaterials = () => {
             setLoading(false);
         });
     };
-    
-    
+
+    const handleShowImage = (imageUrl) => {
+        setSelectedImage(imageUrl);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedImage(null);
+    };
 
     return (
         <div className="min-h-screen p-4">
@@ -128,13 +137,15 @@ const ViewMaterials = () => {
                                 <div className="card-body">
                                     <h2 className="card-title">{material.title}</h2>
                                     <p className=' pr-8'>Google Drive Link: <a href={material.googleDriveLink} target="_blank" className="text-blue-500 ">{material.googleDriveLink}</a></p>
-                                    {material.image && (
+                                    {/* {material.image && (
                                         <div className="card-image">
                                             <img src={material.image} alt={material.title} className="w-full h-auto" />
                                         </div>
-                                    )}
+                                    )} */}
                                     <div className="card-actions justify-end">
-                                        <button className="btn btn-primary" onClick={() => handleUpdateClick(material)}>Update</button>
+                                    <button className="btn btn-danger" onClick={() => handleShowImage(material.image)}>See Image</button>
+                                        <button className="btn btn-danger" onClick={() => handleUpdateClick(material)}>Update</button>
+                                        
                                         <button className="btn btn-danger" onClick={() => handleDelete(material._id)}>Delete</button>
                                     </div>
                                 </div>
@@ -163,32 +174,40 @@ const ViewMaterials = () => {
                             <label className="block font-bold">Google Drive Link:</label>
                             <input
                                 type="text"
-                                {...register("googleDriveLink", {
-                                    type: true })}
-                                    className="input input-bordered w-full"
-                                />
-                                {errors.googleDriveLink && <span className="text-red-600">Google Drive link is required</span>}
-                            </div>
-                            <div>
-                                <label className="block font-bold">Image:</label>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    {...register("image", { required: true })}
-                                    className="input input-bordered w-full"
-                                />
-                                {errors.image && <span className="text-red-600">Image is required</span>}
-                            </div>
-                            <button type="submit" className="btn btn-primary w-full" disabled={loading}>
-                                {loading ? "Uploading..." : "Update Material"}
-                            </button>
-                        </form>
+                                {...register("googleDriveLink", { required: true })}
+                                className="input input-bordered w-full"
+                            />
+                            {errors.googleDriveLink && <span className="text-red-600">Google Drive link is required</span>}
+                        </div>
+                        <div>
+                            <label className="block font-bold">Image:</label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                {...register("image", { required: true })}
+                                className="input input-bordered w-full"
+                            />
+                            {errors.image && <span className="text-red-600">Image is required</span>}
+                        </div>
+                        <button type="submit" className="btn btn-primary w-full" disabled={loading}>
+                            {loading ? "Uploading..." : "Update Material"}
+                        </button>
+                    </form>
+                </div>
+            </dialog>
+
+            {selectedImage && (
+                <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-4 rounded shadow-lg relative">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleCloseModal}>✕</button>
+                        <img src={selectedImage} alt="Material" className="w-full h-auto" />
                     </div>
-                </dialog>
-                <ToastContainer />
-            </div>
-        );
-    };
-    
-    export default ViewMaterials;
-    
+                </div>
+            )}
+
+            <ToastContainer />
+        </div>
+    );
+};
+
+export default ViewMaterials;
