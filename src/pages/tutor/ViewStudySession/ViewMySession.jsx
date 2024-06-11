@@ -15,27 +15,33 @@ const ViewMySession = () => {
     const [approvedSessions, setApprovedSessions] = useState([]);
     const [rejectedSessions, setRejectedSessions] = useState([]);
     const axiosPublic = useAxiosPublic();
+    const [Loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (!loading && user) {
-            axiosPublic.get(`/sessionsByTutor/${user.email}?status=approved`)
+            axiosPublic.get(`/sessionsByTutor/${user?.email}?status=approved`)
                 .then(response => {
                    
                     setApprovedSessions(response.data);
                     refetch();
+                    setLoading(false);
+
                     
                 })
                 .catch(error => {
                     console.error('Error fetching approved sessions:', error);
+                    setLoading(false);
                 });
 
-            axiosPublic.get(`/sessionsByTutor/${user.email}?status=rejected`)
+            axiosPublic.get(`/sessionsByTutor/${user?.email}?status=rejected`)
                 .then(response => {
                     setRejectedSessions(response.data);
                     refetch();
+                    setLoading(false);
                 })
                 .catch(error => {
                     console.error('Error fetching rejected sessions:', error);
+                    setLoading(false);
                 });
         }
     }, [axiosPublic, user, loading,refetch]);
@@ -60,15 +66,24 @@ const ViewMySession = () => {
                                     <th className="px-4 py-2">Status</th>
                                 </tr>
                             </thead>
+                            {Loading ? (
+                                <div className="text-center">
+                                    <span className="loading loading-spinner loading-lg"></span>
+                                </div>
+                            ) :
                             <tbody>
                                 {approvedSessions.map(session => (
                                     <tr key={session._id}>
                                         <td className="border px-4 py-2">{session.title}</td>
-                                        <td className="border px-4 py-2">{session.date}</td>
+                                        <td className="border px-4 py-2">
+                                        {session._id}
+                                        </td>
                                         <td className="border px-4 py-2">{session.status}</td>
+                                        
                                     </tr>
                                 ))}
                             </tbody>
+                                }
                         </table>
                     </div>
                 </TabPanel>
@@ -85,6 +100,11 @@ const ViewMySession = () => {
                                     <th className="px-4 py-2">Actions</th>
                                 </tr>
                             </thead>
+                            {Loading ? (
+                                <div className="text-center">
+                                    <span className="loading loading-spinner loading-lg"></span>
+                                </div>
+                            ) :
                             <tbody>
                                 {rejectedSessions.map(session => (
                                     <tr key={session._id}>
@@ -102,6 +122,7 @@ const ViewMySession = () => {
                                     </tr>
                                 ))}
                             </tbody>
+                            }
                         </table>
                     </div>
                 </TabPanel>

@@ -8,6 +8,9 @@ import ViewUsers from "../pages/admin/viewUsers/ViewUsers";
 import ViewStudySessions from "../pages/admin/viewStudySessions/ViewStudySessions";
 import ViewMySession from "../pages/tutor/ViewStudySession/ViewMySession";
 import RequestApproval from "../pages/tutor/ViewStudySession/RequestApproval";
+import UploadMaterialsForm from "../pages/tutor/UploadMaterials/UploadMaterialsForm";
+import UploadMaterials from "../pages/tutor/UploadMaterials/UploadMaterials";
+import ViewMaterials from "../pages/tutor/viewMaterials/ViewMaterials";
 
 
 export const router = createBrowserRouter([
@@ -55,7 +58,19 @@ export const router = createBrowserRouter([
       {
         path: "/requestApproval/:id",
         element: <RequestApproval></RequestApproval>,
-        
+      },
+      {
+        path: "/studyMaterials",
+        element: <UploadMaterials></UploadMaterials>,
+      },
+
+      {
+        path: "/studyMaterials/:id",
+        element: <UploadMaterialsForm></UploadMaterialsForm>,
+      },
+      {
+        path: "/viewMaterials",
+        element: <ViewMaterials></ViewMaterials>,
       },
       
       

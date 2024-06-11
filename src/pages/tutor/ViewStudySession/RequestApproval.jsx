@@ -73,7 +73,7 @@ const RequestApproval = () => {
           <label className="block font-bold">Tutor Name</label>
           <input
             type="text"
-            value={user.displayName}
+            value={user?.displayName}
             readOnly
             className="input input-bordered w-full bg-gray-200"
           />
@@ -82,7 +82,7 @@ const RequestApproval = () => {
           <label className="block font-bold">Tutor Email</label>
           <input
             type="email"
-            value={user.email}
+            value={user?.email}
             readOnly
             className="input input-bordered w-full bg-gray-200"
           />

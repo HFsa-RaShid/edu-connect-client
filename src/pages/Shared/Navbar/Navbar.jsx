@@ -114,8 +114,8 @@ const Navbar = () => {
               <>
                 <NavLink to='/create-session' className="block py-2">Create Study Session</NavLink>
                 <NavLink to='/viewMySession' className="block py-2">View Study Sessions</NavLink>
-                <NavLink to='/create-session' className="block py-2">Upload materials</NavLink>
-                <NavLink to='/view-sessions' className="block py-2"> View all materials</NavLink>
+                <NavLink to='/studyMaterials' className="block py-2">Upload materials</NavLink>
+                <NavLink to='/viewMaterials' className="block py-2"> View all materials</NavLink>
                 
               </>
             )}
