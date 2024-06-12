@@ -12,6 +12,8 @@ import UploadMaterialsForm from "../pages/tutor/UploadMaterials/UploadMaterialsF
 import UploadMaterials from "../pages/tutor/UploadMaterials/UploadMaterials";
 import ViewMaterials from "../pages/tutor/viewMaterials/ViewMaterials";
 import ViewAllMaterials from "../pages/admin/viewAllMaterials/ViewAllMaterials";
+import PrivateRoute from "./PrivateRoute";
+import SessionDetails from "../pages/Home/studySessions/SessionDetails";
 
 
 export const router = createBrowserRouter([
@@ -77,6 +79,11 @@ export const router = createBrowserRouter([
         path: "/viewAllMaterials",
         element: <ViewAllMaterials></ViewAllMaterials>,
       },
+      {
+        path: "/sessionDetails/:id",
+        element: <PrivateRoute><SessionDetails></SessionDetails></PrivateRoute>,
+      },
+      
       
       
         

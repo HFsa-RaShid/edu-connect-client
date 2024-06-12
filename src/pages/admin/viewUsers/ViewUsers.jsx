@@ -14,7 +14,7 @@ const ViewUsers = () => {
     useEffect(() => {
         axiosPublic.get('/users')
             .then(res => {
-                const nonAdminUsers = res.data.filter(user => user.role !== "admin");
+                const nonAdminUsers = res.data;
                 setUsers(nonAdminUsers);
                 setFilteredUsers(nonAdminUsers); 
             })
@@ -86,7 +86,7 @@ const ViewUsers = () => {
 
     return (
         <div className='min-h-screen'>
-            <h1 className="pt-20 text-center font-bold text-3xl">View Users</h1>
+            <h1 className="pt-20 text-center font-bold text-3xl">Users</h1>
             <div className="flex justify-center py-4">
                 <input
                     type="text"
