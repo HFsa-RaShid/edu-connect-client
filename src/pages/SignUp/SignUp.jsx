@@ -186,7 +186,8 @@ const SignUp = () => {
                 const userInfo = {
                     name: data.name,
                     email: data.email,
-                    role: data.role
+                    role: data.role,
+                    image: 'https://i.ibb.co/x30r6Bk/images.png'
                 };
                 return axiosPublic.post('/users', userInfo);
             })

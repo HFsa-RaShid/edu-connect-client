@@ -2,18 +2,28 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../provider/AuthProvider";
-import { FiMenu } from "react-icons/fi";
-import useAxiosPublic from "../../../HOOKS/useAxiosPublic";
-
+import { MdEditSquare } from "react-icons/md";
+import useUserData from "../../../HOOKS/useUserData"; 
+import { useForm } from 'react-hook-form';
+import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
+const image_hosting_key = import.meta.env.VITE_image_hosting_key;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { LuUpload } from "react-icons/lu";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const axiosPublic = useAxiosPublic();
+  const [loading, setLoading] = useState(false);
+  const [showForm, setShowForm] = useState(false); 
+  const axiosSecure = useAxiosSecure();
+  const { userData, refetch, isLoading: isUserDataLoading, isError: isUserDataError } = useUserData(user?.email);
 
   const [isDashboardVisible, setIsDashboardVisible] = useState(false);
-  const [userRole, setUserRole] = useState("");
+  const [profileImage, setProfileImage] = useState("");
+  const { register, handleSubmit, formState: { errors }, reset} = useForm();
 
   const handleSignOut = () => {
     logOut()
@@ -26,42 +36,29 @@ const Navbar = () => {
   };
 
   // Theme 
-  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
+  // const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
 
-  const handleToggle = e => {
-    if (e.target.checked) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
+  // const handleToggle = e => {
+  //   if (e.target.checked) {
+  //     setTheme("dark");
+  //   } else {
+  //     setTheme("light");
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   localStorage.setItem("theme", theme);
+  //   const localTheme = localStorage.getItem("theme");
+  //   document.querySelector("html").setAttribute("data-theme", localTheme);
+  // }, [theme]);
+
+  useEffect(() => {
+    if (userData && userData.image) {
+      setProfileImage(userData.image);
     }
-  };
+  }, [userData]);
 
   useEffect(() => {
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme);
-  }, [theme]);
-
-
-
-  useEffect(() => {
-    if (user && user.email) {
-      axiosPublic.get(`/users?email=${user.email}`)
-        .then(res => {
-          const userData = res.data;
-          if (userData && userData.role) {
-            setUserRole(userData.role);
-          } 
-        })
-        .catch(error => {
-          console.error("Error fetching user role:", error);
-        });
-    }
-  }, [user,axiosPublic]);
-
-
-  useEffect(() => {
-    // Close the dashboard when the route changes
     setIsDashboardVisible(false);
   }, [location]);
 
@@ -73,23 +70,65 @@ const Navbar = () => {
     setIsDashboardVisible(false);
   };
 
+  
+// edit icon toggle
+  const handleEditButtonClick = () => {
+    setShowForm(!showForm); 
+  };
+
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+    formData.append('image', data.image[0]);
+  
+    try {
+      setLoading(true);
+      const res = await fetch(image_hosting_api, {
+        method: 'POST',
+        body: formData,
+      });
+      const imageData = await res.json();
+      
+      if (imageData.success) {
+        const materialData = {
+          image: imageData.data.display_url,
+        };
+        const materialRes = await axiosSecure.put(`/users/${userData._id}`, materialData);
+        if (materialRes.data.updated === true) {
+          setProfileImage(imageData.data.display_url);
+          toast.success('Image updated successfully');
+          reset();
+          setLoading(false);
+          refetch();
+        } else {
+          setLoading(false);
+          console.error('Failed to update image');
+        }
+      } else {
+        setLoading(false);
+        console.error('Failed to upload image');
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error('Error uploading image:', error);
+    }
+};
+
+  
   return (
     <div>
       <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl bg-black text-white">
         <div className="flex-none">
-        {user && (
-          <button className="btn btn-square btn-ghost" onClick={handleMenuClick}>
-            <FiMenu className="w-5 h-5 stroke-current" />
-          </button>
-        )}
+          {user && (
+            <button className="btn btn-square btn-ghost" onClick={handleMenuClick}>
+              <img src={profileImage} className="rounded-full h-[40px] w-[40px]" key={profileImage} />
+            </button>
+          )}
         </div>
         <div className="flex-1">
           <a className="btn btn-ghost text-3xl font-bold italic">EduConnect</a>
         </div>
         <div className="flex-none">
-          <label className="swap swap-rotate">
-            <input type="checkbox" onChange={handleToggle} checked={theme === "light" ? false : true} className="theme-controller" />
-          </label>
+          
 
           {user ? (
             <button onClick={handleSignOut} className="py-2 px-4 rounded-xl font-bold border border-white text-[12px] lg:text-[18px]">Sign Out</button>
@@ -107,26 +146,66 @@ const Navbar = () => {
             <button onClick={handleCloseDashboard} className="absolute top-2 right-2 text-black">
               &#x2716;
             </button>
+            
             <h2 className="text-xl font-bold mb-10">Dashboard</h2>
+            <div className="ml-16 h-[80px] w-[75px] rounded-full relative bg-slate-300">
+              <img key={profileImage} src={`${profileImage}`} className="rounded-full h-[80px] w-[75px] " />
+           
+                <MdEditSquare className="bottom-0 right-0 absolute text-3xl bg-white border-4 rounded-full" onClick={handleEditButtonClick} />
+              
+              
+              </div>
+
+
+              <div className="flex items-center mb-4">
+              
+            </div>
+
+            {showForm && (
+              <form onSubmit={handleSubmit(onSubmit)} className="flex items-center">
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register("image", { required: true })}
+                  className="input w-full mt-6"
+                />
+                {errors.image && <span className="text-red-600">Image is required</span>}
+                <button type="submit" disabled={loading} className="mt-2 py-2 px-4 rounded-xl font-bold border text-black"><LuUpload /></button>
+              </form>
+            )}
+
+              {/* <form onSubmit={handleSubmit(onSubmit)} className="flex items-center">
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register("image", { required: true })}
+                  className="input  w-full mt-6"
+                />
+                {errors.image && <span className="text-red-600">Image is required</span>}
+                <button type="submit" disabled={loading} className="mt-2 py-2 px-4 rounded-xl font-bold border  text-black"><LuUpload /></button>
+              </form> */}
+            
+            <p className="my-6 text-center text-xl font-bold">{userData && userData.name}</p>
+            <hr></hr>
+            
             <NavLink to='/' className="block py-2">Home</NavLink>
             
-             {userRole === "tutor" && (
+             {userData && userData.role === "tutor" && (
               <>
                 <NavLink to='/create-session' className="block py-2">Create Study Session</NavLink>
                 <NavLink to='/viewMySession' className="block py-2">View Study Sessions</NavLink>
                 <NavLink to='/studyMaterials' className="block py-2">Upload materials</NavLink>
                 <NavLink to='/viewMaterials' className="block py-2"> View all materials</NavLink>
-                
               </>
             )}
-            {userRole === "admin" && (
+            {userData && userData.role === "admin" && (
               <>
                 <NavLink to='/viewUsers' className="block py-2">View Users</NavLink>
                 <NavLink to='/viewStudySession' className="block py-2">View all Study Sessions</NavLink>
                 <NavLink to='/ViewAllMaterials' className="block py-2">View all materials</NavLink>
               </>
             )}
-            {userRole === "student" && (
+            {userData && userData.role === "student" && (
               <>
                 <NavLink to='/my-sessions' className="block py-2">My Sessions</NavLink>
                 <NavLink to='/browse-sessions' className="block py-2">Browse Sessions</NavLink>
@@ -135,6 +214,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
+       <ToastContainer />
     </div>
   );
 };

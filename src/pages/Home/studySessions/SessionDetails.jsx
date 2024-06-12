@@ -64,7 +64,7 @@ const SessionDetails = () => {
 
     return (
         <div className="min-h-screen p-8">
-            <div className="card h-[450px] mt-20 bg-base-100 shadow-xl image-full">
+            <div className="card h-[450px] mt-20 bg-base-100 shadow-xl image-full z-[-10]">
                 <figure>
                     <img src="https://i.ibb.co/YXFHRzv/Online-learning-scaled.jpg" className='w-full h-full' />
                 </figure>
