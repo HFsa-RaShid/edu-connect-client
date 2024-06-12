@@ -1,30 +1,36 @@
 
 
-import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const StudySessionsCard = ({ displaySession }) => {
     const {
         _id,
         title,
-        tutorName,
         description,
-        tutorEmail,
-        registrationStartDate,
         registrationEndDate
     } = displaySession;
 
-    // Determine if the registration is ongoing or closed
     const isRegistrationOver = new Date(registrationEndDate) < new Date();
 
     return (
         <div className="card bg-base-100 h-[280px] shadow-xl image-full">
             <figure>
-                <img src="https://i.ibb.co/YXFHRzv/Online-learning-scaled.jpg" alt="Session" />
+                <img src="https://i.ibb.co/G9XH87b/Hand-holding-a-tablet-with-a-light-hologram-of-a-brain-above-it.jpg" alt="Session" />
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
-                <p>{description}</p>
+                {
+                    description.length > 150 ? 
+                    <p>{description.slice(0,150)}.......
+                    
+                    </p>
+                    :
+                    <p>{description}</p>
+                   
+
+                }
+                {/* <p>{description}</p> */}
                 <div className="card-actions">
                     <button className="btn">
                         {isRegistrationOver ? 'Closed' : 'Ongoing'}
@@ -37,3 +43,7 @@ const StudySessionsCard = ({ displaySession }) => {
 };
 
 export default StudySessionsCard;
+
+StudySessionsCard.propTypes = {
+    displaySession: PropTypes.node
+};
