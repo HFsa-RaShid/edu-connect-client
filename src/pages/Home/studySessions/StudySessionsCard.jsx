@@ -14,7 +14,7 @@ const StudySessionsCard = ({ displaySession }) => {
     const isRegistrationOver = new Date(registrationEndDate) < new Date();
 
     return (
-        <div className="card bg-base-100 h-[280px] shadow-xl image-full z-[-10]">
+        <div className="card bg-base-100 h-[280px] shadow-xl image-full z-10">
             <figure>
                 <img src="https://i.ibb.co/G9XH87b/Hand-holding-a-tablet-with-a-light-hologram-of-a-brain-above-it.jpg" alt="Session" />
             </figure>
@@ -29,7 +29,7 @@ const StudySessionsCard = ({ displaySession }) => {
                     <p>{description}</p>
                 
                 }
-                {/* <p>{description}</p> */}
+                
                 <div className="card-actions">
                     <button className="btn">
                         {isRegistrationOver ? 'Closed' : 'Ongoing'}

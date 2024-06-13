@@ -1,11 +1,11 @@
 import React from 'react';
 import useApprove from '../../../HOOKS/useApprove';
 import StudySessionsCard from './StudySessionsCard';
+import { NavLink } from 'react-router-dom';
 
 const StudySessions = () => {
     const [approveSession, refetch] = useApprove();
 
-    // Display between 3 to 6 sessions
     const displaySessions = approveSession.slice(0, 6);
 
     return (
@@ -16,7 +16,9 @@ const StudySessions = () => {
                 }
             </div>
             {approveSession.length > 6 && (
-                <button className="see-all-sessions">See All Sessions</button>
+                <div className='flex justify-center my-6'>
+                <NavLink to='/AllStudySessions'><button className="see-all-sessions btn">See All Sessions</button></NavLink>
+                </div>
             )}
         </div>
     );

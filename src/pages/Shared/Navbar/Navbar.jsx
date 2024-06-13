@@ -147,8 +147,9 @@ const Navbar = () => {
               &#x2716;
             </button>
             
-            <h2 className="text-xl font-bold mb-10">Dashboard</h2>
-            <div className="ml-16 h-[80px] w-[75px] rounded-full relative bg-slate-300">
+            <h2 className="text-xl font-bold mb-6">Dashboard</h2>
+            <hr></hr>
+            <div className="ml-16 h-[80px] w-[75px] rounded-full relative bg-slate-300 mt-6">
               <img key={profileImage} src={`${profileImage}`} className="rounded-full h-[80px] w-[75px] " />
            
                 <MdEditSquare className="bottom-0 right-0 absolute text-3xl bg-white border-4 rounded-full" onClick={handleEditButtonClick} />

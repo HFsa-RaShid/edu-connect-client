@@ -14,6 +14,8 @@ import ViewMaterials from "../pages/tutor/viewMaterials/ViewMaterials";
 import ViewAllMaterials from "../pages/admin/viewAllMaterials/ViewAllMaterials";
 import PrivateRoute from "./PrivateRoute";
 import SessionDetails from "../pages/Home/studySessions/SessionDetails";
+import AllStudySessions from "../pages/Home/studySessions/AllStudySessions";
+import Payment from "../pages/Home/studySessions/Payment";
 
 
 export const router = createBrowserRouter([
@@ -83,10 +85,15 @@ export const router = createBrowserRouter([
         path: "/sessionDetails/:id",
         element: <PrivateRoute><SessionDetails></SessionDetails></PrivateRoute>,
       },
+      {
+        path: "/AllStudySessions",
+        element: <AllStudySessions></AllStudySessions>,
+      },
+      {
+        path: "/sessionDetails/:id/payment",
+        element: <Payment></Payment>,
+      },
       
-      
-      
-        
       ],
     },
   ]);
