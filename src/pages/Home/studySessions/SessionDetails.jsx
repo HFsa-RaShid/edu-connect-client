@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useAxiosPublic from '../../../HOOKS/useAxiosPublic';
 import { AuthContext } from '../../../provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const SessionDetails = () => {
     const { id } = useParams();
@@ -10,12 +11,14 @@ const SessionDetails = () => {
     const [sessionDetails, setSessionDetails] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [userRole, setUserRole] = useState('');
+    const [userFee, setUserFee] = useState('');
     const [bookedSessions, setBookedSessions] = useState([]); 
 
     useEffect(() => {
         axiosPublic.get(`/sessions/${id}`)
             .then((res) => {
                 setSessionDetails(res.data);
+                 setUserFee(res.data.registrationFee);
                 setIsLoading(false);
             })
             .catch((err) => {
@@ -51,6 +54,37 @@ const SessionDetails = () => {
         }
     }, [user, axiosPublic]);
 
+
+    const handleBooking = () => {
+        if (userFee === 0) {
+            axiosPublic.post('/bookedSession', {
+                studentEmail: user?.email,
+                sessionId: id,
+                tutorEmail: sessionDetails.tutorEmail,
+                date: new Date().toISOString()
+            })
+            .then(res => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Booking Successful!',
+                    text: 'You have successfully booked the session.',
+                    confirmButtonText: 'Ok'
+                });
+                setBookedSessions([...bookedSessions, res.data]); 
+            })
+            .catch(error => {
+                console.error("Error booking session:", error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Booking Failed',
+                    text: 'Failed to book the session. Please try again later.',
+                    confirmButtonText: 'Ok'
+                });
+            });
+        } 
+    };
+
+
     if (isLoading) return <div className='text-center'>
         <p className="loading loading-spinner loading-lg pt-80"></p>
     </div>;
@@ -69,6 +103,7 @@ const SessionDetails = () => {
 
     const isRegistrationOver = new Date(registrationEndDate) < new Date();
     const isUserAdminOrTutor = userRole === 'admin' || userRole === 'tutor';
+    const isUserFee = userFee === 0 ;
 
     const isUserBooked = bookedSessions.some(session => session.sessionId === id);
 
@@ -103,9 +138,24 @@ const SessionDetails = () => {
                             isRegistrationOver || isUserAdminOrTutor || isUserBooked ? (
                                 <button disabled className='btn'>Book Now</button>
                             ) : (
-                                <Link to={`/sessionDetails/${id}/payment`}>
-                                    <button className='btn'>Book Now</button>
-                                </Link>
+                                <>
+                                {
+                                    isUserFee ? (
+                                        <button className='btn' onClick={handleBooking}>Book Now</button>
+
+                                    ) : (
+                                        <Link to={`/sessionDetails/${id}/payment`}>
+                                        <button className='btn'>Book Now</button>
+                                    </Link>
+
+                                    )
+
+                                }
+
+
+                                </>
+                                
+                               
                             )
                         }
                     </div>

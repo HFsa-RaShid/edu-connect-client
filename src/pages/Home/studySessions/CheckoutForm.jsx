@@ -31,7 +31,7 @@ const CheckoutForm = ({sessionId}) => {
                     })
                     .then(res => {
                       
-                        console.log(res.data.clientSecret);
+                        // console.log(res.data.clientSecret);
                         
                        setClientSecret(res.data.clientSecret);
                     })
@@ -59,7 +59,7 @@ const CheckoutForm = ({sessionId}) => {
             console.log('[error]', error);
             setError(error.message);
         } else {
-            console.log('[PaymentMethod]', paymentMethod);
+            // console.log('[PaymentMethod]', paymentMethod);
             setError('');
         }
         // confirm payment
@@ -87,8 +87,6 @@ const CheckoutForm = ({sessionId}) => {
                 studentEmail: user?.email,
                 sessionId,
                 tutorEmail,
-                transactionId: paymentIntent.id,
-                paymentStatus: paymentIntent.status,
                 date: currentDate
             })
                 .then(res => {
