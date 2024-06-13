@@ -19,7 +19,7 @@ const Navbar = () => {
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false); 
   const axiosSecure = useAxiosSecure();
-  const { userData, refetch, isLoading: isUserDataLoading, isError: isUserDataError } = useUserData(user?.email);
+  const { userData, refetch } = useUserData(user?.email);
 
   const [isDashboardVisible, setIsDashboardVisible] = useState(false);
   const [profileImage, setProfileImage] = useState("");
