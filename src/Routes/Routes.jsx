@@ -16,6 +16,8 @@ import PrivateRoute from "./PrivateRoute";
 import SessionDetails from "../pages/Home/studySessions/SessionDetails";
 import AllStudySessions from "../pages/Home/studySessions/AllStudySessions";
 import Payment from "../pages/Home/studySessions/Payment";
+import BookedSession from "../pages/student/bookedSession/BookedSession";
+import BookedSessionDetails from "../pages/student/bookedSession/BookedSessionDetails";
 
 
 export const router = createBrowserRouter([
@@ -93,6 +95,15 @@ export const router = createBrowserRouter([
         path: "/sessionDetails/:id/payment",
         element: <Payment></Payment>,
       },
+      {
+        path: "/bookedSession",
+        element: <PrivateRoute><BookedSession></BookedSession></PrivateRoute>,
+      },
+      {
+        path: "/bookedSessionDetails/:id",
+        element: <BookedSessionDetails></BookedSessionDetails>,
+      },
+      
       
       ],
     },

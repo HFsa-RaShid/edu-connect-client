@@ -208,7 +208,7 @@ const Navbar = () => {
             )}
             {userData && userData.role === "student" && (
               <>
-                <NavLink to='/my-sessions' className="block py-2">My Sessions</NavLink>
+                <NavLink to='/bookedSession' className="block py-2">View booked session</NavLink>
                 <NavLink to='/browse-sessions' className="block py-2">Browse Sessions</NavLink>
               </>
             )}
