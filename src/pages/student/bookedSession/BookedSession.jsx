@@ -42,16 +42,16 @@ const BookedSession = () => {
     }, [bookedSessions, axiosSecure]);
 
     return (
-        <div>
+        <div className="min-h-screen">
             <h2 className="text-2xl font-bold mb-4 pt-20">Booked Sessions</h2>
             {isLoading ? (
                 <div className="text-center">
                     <span className="loading loading-spinner loading-lg"></span>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-10 ">
                     {bookedSessions.map((session) => (
-                        <div key={session.sessionId} className="card w-96 bg-base-100 shadow-xl">
+                        <div key={session.sessionId} className="card bg-base-100 shadow-2xl h-56">
                             <div className="card-body">
                                
                                 {sessionDetails[session.sessionId] ? (
@@ -60,7 +60,7 @@ const BookedSession = () => {
                                         <p><strong>Instructor:</strong> {sessionDetails[session.sessionId].tutorName}</p>
                                         <p><strong>Class Start Date:</strong> {sessionDetails[session.sessionId].classStartDate}</p>
                                         <NavLink to={`/bookedSessionDetails/${session.sessionId}`}>
-                                            <button className="btn">View Details</button>
+                                            <button className="btn mt-4">View Details</button>
                                         </NavLink>
                                     </div>
                                 ) : (

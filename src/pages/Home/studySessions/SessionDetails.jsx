@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import useAxiosPublic from '../../../HOOKS/useAxiosPublic';
 import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
@@ -13,6 +13,7 @@ const SessionDetails = () => {
     const [userRole, setUserRole] = useState('');
     const [userFee, setUserFee] = useState('');
     const [bookedSessions, setBookedSessions] = useState([]); 
+    const [averageRating, setAverageRating] = useState(0);
 
     useEffect(() => {
         axiosPublic.get(`/sessions/${id}`)
@@ -53,6 +54,18 @@ const SessionDetails = () => {
                 });
         }
     }, [user, axiosPublic]);
+
+    useEffect(() => {
+        axiosPublic.get(`/reviews/${id}`)
+            .then((res) => {
+                setAverageRating(res.data.averageRating); 
+            
+            })
+            .catch((error) => {
+                console.error('Error fetching reviews:', error);
+               
+            });
+    }, [id, axiosPublic]);
 
 
     const handleBooking = () => {
@@ -109,22 +122,22 @@ const SessionDetails = () => {
 
     return (
         <div className="min-h-screen p-8">
-            <div className="card h-[450px] mt-20 bg-base-100 shadow-xl image-full z-10">
-                <figure>
+            <div className="card  mt-20 bg-base-100 text-white " style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://i.ibb.co/YXFHRzv/Online-learning-scaled.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                {/* <figure>
                     <img src="https://i.ibb.co/YXFHRzv/Online-learning-scaled.jpg" className='w-full h-full' alt="Session Image" />
-                </figure>
+                </figure> */}
                 <div className="card-body">
                     <h1 className="text-3xl font-bold mb-2 text-center">{title}</h1>
                     <div className='w-[80%] mx-auto my-6'>
-                        <p className="text-center"><strong>Description:</strong> {description}</p>
+                        <p className="text-center"><strong>Description: </strong> {description}</p>
                     </div>
                     <div className='flex justify-evenly items-center text-xl'>
                         <div>
-                            <p className="mb-2"><strong>Tutor Name:</strong> {tutorName}</p>
-                            <p className="mb-1"><strong>Average Rating:</strong> </p>
-                            <p className="mb-1"><strong>Duration:</strong> {duration}</p>
-                            <p className="mb-1"><strong>Registration Fee:</strong> {registrationFee === 0 ? 'Free' : `$${registrationFee}`}</p>
-                            <p className="mb-1"><strong>Reviews:</strong> </p>
+                            <p className="mb-2"><strong>Tutor Name: </strong> {tutorName}</p>
+                            <p className="mb-1"><strong>Average Rating: </strong>{averageRating} </p>
+                            <p className="mb-1"><strong>Duration: </strong> {duration}</p>
+                            <p className="mb-1"><strong>Registration Fee: </strong> {registrationFee === 0 ? 'Free' : `$${registrationFee}`}</p>
+                            
                         </div>
                         <div>
                             <p className="mb-1"><strong>Registration Start Date:</strong> {new Date(registrationStartDate).toLocaleDateString()}</p>
@@ -134,6 +147,9 @@ const SessionDetails = () => {
                         </div>
                     </div>
                     <div className="card-actions justify-center">
+                        <NavLink to={`/sessionDetails/${id}/review`}>
+                            <button className='btn'>Reviews</button>
+                        </NavLink>
                         {
                             isRegistrationOver || isUserAdminOrTutor || isUserBooked ? (
                                 <button disabled className='btn'>Book Now</button>
