@@ -19,6 +19,7 @@ import Payment from "../pages/Home/studySessions/Payment";
 import BookedSession from "../pages/student/bookedSession/BookedSession";
 import BookedSessionDetails from "../pages/student/bookedSession/BookedSessionDetails";
 import Reviews from "../pages/Home/studySessions/Reviews";
+import CreateNotes from "../pages/student/createNotes/CreateNotes";
 
 
 export const router = createBrowserRouter([
@@ -107,6 +108,10 @@ export const router = createBrowserRouter([
       {
         path: "/sessionDetails/:id/review",
         element: <Reviews></Reviews>,
+      },
+      {
+        path: "/createNotes",
+        element: <CreateNotes></CreateNotes>,
       },
       
       
