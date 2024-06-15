@@ -1,5 +1,3 @@
-
-
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import useNotes from '../../../HOOKS/useNotes';

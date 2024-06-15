@@ -16,8 +16,8 @@ const CreateStudySession = () => {
     setLoading(true);
     const sessionData = {
       title: data.title,
-      tutorName: user.displayName,
-      tutorEmail: user.email,
+      tutorName: user?.displayName,
+      tutorEmail: user?.email,
       description: data.description,
       registrationStartDate: data.registrationStartDate,
       registrationEndDate: data.registrationEndDate,
@@ -57,7 +57,7 @@ const CreateStudySession = () => {
           <label className="block font-bold">Tutor Name</label>
           <input
             type="text"
-            value={user.displayName}
+            value={user?.displayName}
             readOnly
             className="input input-bordered w-full bg-gray-200"
           />
@@ -66,7 +66,7 @@ const CreateStudySession = () => {
           <label className="block font-bold">Tutor Email</label>
           <input
             type="email"
-            value={user.email}
+            value={user?.email}
             readOnly
             className="input input-bordered w-full bg-gray-200"
           />
