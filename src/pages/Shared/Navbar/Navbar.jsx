@@ -211,7 +211,7 @@ const Navbar = () => {
                 <NavLink to='/bookedSession' className="block py-2">View booked session</NavLink>
                 <NavLink to='/createNotes' className="block py-2">Create note</NavLink>
                 <NavLink to='/managePersonalNotes' className="block py-2">Manage personal notes</NavLink>
-                
+                <NavLink to='/bookedSessionMaterials' className="block py-2">View Materials</NavLink>
               
               </>
             )}

@@ -24,7 +24,7 @@ const ViewMaterials = () => {
 
     useEffect(() => {
         if (user) {
-            axiosSecure.get(`/materials/${user?.email}`)
+            axiosSecure.get(`/materials/email/${user?.email}`)
                 .then(response => {
                     const materialsData = Array.isArray(response.data) ? response.data : [];
                     setMaterials(materialsData);
@@ -133,10 +133,12 @@ const ViewMaterials = () => {
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {materials.map(material => (
-                            <div key={material._id} className="card w-96 bg-base-100 shadow-xl">
+                            <div key={material._id} className="card  bg-base-100 shadow-xl">
                                 <div className="card-body">
                                     <h2 className="card-title">{material.title}</h2>
-                                    <p className=' pr-8'>Google Drive Link: <a href={material.googleDriveLink} target="_blank" className="text-blue-500 ">{material.googleDriveLink}</a></p>
+                                    <a href={material.googleDriveLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                                                            Drive Link
+                                                        </a>
                                     {/* {material.image && (
                                         <div className="card-image">
                                             <img src={material.image} alt={material.title} className="w-full h-auto" />
@@ -211,3 +213,4 @@ const ViewMaterials = () => {
 };
 
 export default ViewMaterials;
+

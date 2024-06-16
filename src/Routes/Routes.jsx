@@ -22,6 +22,7 @@ import Reviews from "../pages/Home/studySessions/Reviews";
 import CreateNotes from "../pages/student/createNotes/CreateNotes";
 import ManageNotes from "../pages/student/managePersonalNotes/ManageNotes";
 import NoteDetails from "../pages/student/managePersonalNotes/NoteDetails";
+import BookedSessionMaterials from "../pages/student/bookedSessionMaterials/BookedSessionMaterials";
 
 
 export const router = createBrowserRouter([
@@ -122,6 +123,10 @@ export const router = createBrowserRouter([
       {
         path: "/noteDetails/:id",
         element: <NoteDetails></NoteDetails>,
+      },
+      {
+        path: "/bookedSessionMaterials",
+        element: <BookedSessionMaterials></BookedSessionMaterials>,
       },
       
       
