@@ -1,5 +1,4 @@
 
-
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import useAxiosSecure from '../../../HOOKS/useAxiosSecure';
@@ -9,8 +8,10 @@ import Swal from 'sweetalert2';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const ViewMaterials = () => {
     const { user } = useContext(AuthContext);
+    // const {materials, refetch} = useMaterialTutor(user.email);
     const [materials, setMaterials] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
     const axiosSecure = useAxiosSecure();
@@ -139,11 +140,7 @@ const ViewMaterials = () => {
                                     <a href={material.googleDriveLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
                                                             Drive Link
                                                         </a>
-                                    {/* {material.image && (
-                                        <div className="card-image">
-                                            <img src={material.image} alt={material.title} className="w-full h-auto" />
-                                        </div>
-                                    )} */}
+                                   
                                     <div className="card-actions justify-end">
                                     <button className="btn btn-danger" onClick={() => handleShowImage(material.image)}>See Image</button>
                                         <button className="btn btn-danger" onClick={() => handleUpdateClick(material)}>Update</button>
@@ -213,4 +210,8 @@ const ViewMaterials = () => {
 };
 
 export default ViewMaterials;
+
+
+
+
 

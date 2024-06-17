@@ -11,33 +11,34 @@ const ViewAllMaterials = () => {
     const { user } = useContext(AuthContext);
     const [sessions, setSessions] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
     const axiosSecure = useAxiosSecure();
-    const { material, refetch, isLoading } = useAxiosMaterials();
+    const { material, refetch, isLoading } = useAxiosMaterials(currentPage);
 
     useEffect(() => {
         if (user) {
-            refetch(); 
+            refetch();
         }
-    }, [user, refetch]);
+    }, [user, refetch, currentPage]);
 
     useEffect(() => {
-        // Fetch sessions when materialsData and materialsData.sessionId are available
         const fetchSessions = async () => {
-            if (material.length > 0) {
-                const sessionIds = material.map(material => material.sessionId);
-                try {
-                    const sessionsData = await Promise.all(sessionIds.map(sessionId => {
-                        return axiosSecure.get(`/sessions/${sessionId}`)
-                            .then(response => response.data)
-                            .catch(error => {
-                                console.error('Error fetching session:', error);
-                                return null;
-                            });
-                    }));
+            if (material.materials.length > 0) {
+                const sessionIds = material.materials.map(material => material.sessionId);
+                Promise.all(sessionIds.map(sessionId => 
+                    axiosSecure.get(`/sessions/${sessionId}`)
+                        .then(response => response.data)
+                        .catch(error => {
+                            console.error('Error fetching session:', error);
+                            return null;
+                        })
+                ))
+                .then(sessionsData => {
                     setSessions(sessionsData.filter(session => session !== null));
-                } catch (error) {
+                })
+                .catch(error => {
                     console.error('Error fetching sessions:', error);
-                }
+                });
             }
         };
 
@@ -71,7 +72,6 @@ const ViewAllMaterials = () => {
             }
         });
     };
-    
 
     const handleShowImage = (imageUrl) => {
         setSelectedImage(imageUrl);
@@ -80,6 +80,8 @@ const ViewAllMaterials = () => {
     const handleCloseModal = () => {
         setSelectedImage(null);
     };
+
+    
 
     return (
         <div className="min-h-screen p-4">
@@ -90,26 +92,27 @@ const ViewAllMaterials = () => {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {/* Display materials */}
-                    {material.map(material => (
+                    {material.materials.map(material => (
                         <div key={material._id} className="card bg-base-100 shadow-xl">
                             <div className="card-body">
                                 <h2 className="card-title">{material.title}</h2>
-                                {/* Display sessions for each material */}
                                 {sessions.map(session => {
                                     if (session._id === material.sessionId) {
                                         return (
                                             <div key={session._id}>
-                                                <p className="card-subtitle">Session End Data: {session.classEndDate}</p>
+                                                <p className="card-subtitle">Session End Date: {session.classEndDate}</p>
                                             </div>
                                         );
                                     }
                                     return null;
                                 })}
-                                <p className='pr-8'>Google Drive Link: <a href={material.googleDriveLink} target="_blank" className="text-blue-500">{material.googleDriveLink}</a></p>
+                                <a href={material.googleDriveLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                                                            Drive Link
+                                                        </a>
                                 <div className="card-actions justify-end">
-                                    <button className="btn btn-primary" onClick={() => handleShowImage(material.image)}>See Image</button>
-                                    <button className="btn btn-danger" onClick={() => handleDeleteMaterial(material._id)}>Delete Material</button>
+                                    <button className="btn " onClick={() => handleShowImage(material.image)}>See Image</button>
+                                   
+                                    <button className="btn " onClick={() => handleDeleteMaterial(material._id)}>Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -125,6 +128,18 @@ const ViewAllMaterials = () => {
                     </div>
                 </div>
             )}
+
+            <div className="join mt-4">
+                {[...Array(material.totalPages).keys()].map(page => (
+                    <button
+                        key={page + 1}
+                        className={`join-item btn ${currentPage === page + 1 ? 'btn-active' : ''}`}
+                        onClick={() => setCurrentPage(page + 1)}
+                    >
+                        {page + 1}
+                    </button>
+                ))}
+            </div>
 
             <ToastContainer />
         </div>
