@@ -5,6 +5,8 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import GoogleLogin from "./socialLogin/GoogleLogin";
+import GithubLogin from "./socialLogin/GithubLogin";
 
 const LogIn = () => {
 
@@ -12,7 +14,6 @@ const LogIn = () => {
     const [showPassword, setShowPassword] = useState(false);
      const location = useLocation();
     const navigate = useNavigate();
-
 
     const handleSignIn = e =>{
         e.preventDefault();
@@ -69,6 +70,7 @@ const LogIn = () => {
                     <button type="button" className="absolute right-3 top-4" onClick={() => setShowPassword(!showPassword)}>{showPassword ? <FaEye /> : <FaEyeSlash />}
                     </button>
                 </div>
+               
                 
                 <label className="label">
                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
@@ -77,8 +79,12 @@ const LogIn = () => {
                 <div className="form-control mt-6">
                
                 <button type="submit" className="btn btn-outline border-0 border-b-4 border-t-2 border-black text-black px-3 text-xl font-bold w-full">Sign In</button>
+                <div className="divider">OR</div>
+                <div className="flex justify-between">
+                <GoogleLogin></GoogleLogin>
+                <GithubLogin></GithubLogin>
+                </div>
             
-            <button ></button>
                 </div>
                 <p className="text-center mb-5">New to EduConnect? Please <Link to="/signup">
                             <button className="text-blue-400 underline font-bold">Sign Up</button>
