@@ -62,7 +62,8 @@ const ViewMySession = () => {
                             <thead>
                                 <tr>
                                     <th className="px-4 py-2">Title</th>
-                                    <th className="px-4 py-2">Date</th>
+                                    <th className="px-4 py-2">Class Start Date</th>
+                                    <th className="px-4 py-2">Class End Date</th>
                                     <th className="px-4 py-2">Status</th>
                                 </tr>
                             </thead>
@@ -73,12 +74,15 @@ const ViewMySession = () => {
                             ) :
                             <tbody>
                                 {approvedSessions.map(session => (
-                                    <tr key={session._id}>
+                                    <tr key={session._id} className='text-center'>
                                         <td className="border px-4 py-2">{session.title}</td>
                                         <td className="border px-4 py-2">
-                                        {session._id}
+                                        {session.classStartDate}
                                         </td>
-                                        <td className="border px-4 py-2">{session.status}</td>
+                                        <td className="border px-4 py-2">
+                                        {session.classEndDate}
+                                        </td>
+                                        <td className="border px-4 py-2 text-green-600 font-semibold">{session.status}</td>
                                         
                                     </tr>
                                 ))}
@@ -95,8 +99,10 @@ const ViewMySession = () => {
                             <thead>
                                 <tr>
                                     <th className="px-4 py-2">Title</th>
-                                    <th className="px-4 py-2">Date</th>
+                                    
                                     <th className="px-4 py-2">Status</th>
+                                    <th className="px-4 py-2">FeedBack</th>
+                                    <th className="px-4 py-2">Rejection Reason</th>
                                     <th className="px-4 py-2">Actions</th>
                                 </tr>
                             </thead>
@@ -107,13 +113,15 @@ const ViewMySession = () => {
                             ) :
                             <tbody>
                                 {rejectedSessions.map(session => (
-                                    <tr key={session._id}>
+                                    <tr key={session._id} className='text-center'>
                                         <td className="border px-4 py-2">{session.title}</td>
-                                        <td className="border px-4 py-2">{session.date}</td>
+                                        
                                         <td className="border px-4 py-2">{session.status}</td>
+                                        <td className="border px-4 py-2">{session.feedback}</td>
+                                        <td className="border px-4 py-2">{session.rejectionReason}</td>
                                         <td className="border px-4 py-2">
                                             <NavLink to={`/requestApproval/${session._id}`}>
-                                            <button>
+                                            <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black ">
                                                 Request Approval
                                             </button>
                                             </NavLink>

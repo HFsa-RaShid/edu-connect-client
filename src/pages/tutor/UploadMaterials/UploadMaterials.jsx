@@ -49,16 +49,16 @@ const UploadMaterials = () => {
                 </div>
             ) : <tbody>
             {approvedSessions.map(session => (
-                <tr key={session._id}>
+                <tr key={session._id} className="text-center">
                     <td className="border px-4 py-2">{session.title}</td>
                     <td className="border px-4 py-2">
                     <NavLink to={`/studyMaterials/${session._id}`}>
-                        <button>
+                        <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black">
                             Upload Study Materials
                         </button>
                         </NavLink>
                     </td>
-                    <td className="border px-4 py-2">{session.status}</td>
+                    <td className="border px-4 py-2 text-green-600 font-semibold">{session.status}</td>
                     
                 </tr>
             ))}

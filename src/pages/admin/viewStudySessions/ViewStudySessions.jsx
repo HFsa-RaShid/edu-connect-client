@@ -166,13 +166,13 @@ const ViewStudySessions = () => {
                         <div>
                             <div className="my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 px-4">
                                 {pendingSessions.map(session => (
-                                    <div key={session._id} className="card bg-neutral text-neutral-content">
+                                    <div key={session._id} className="card shadow-2xl">
                                         <div className="card-body items-center text-center">
                                             <h2 className="card-title">{session.title}</h2>
                                             <p>{session.description}</p>
                                             <div className="card-actions justify-end">
-                                                <button className="btn btn-primary" onClick={() => approveSession(session._id)}>Accept</button>
-                                                <button className="btn btn-ghost" onClick={() => rejectSession(session._id)}>Deny</button>
+                                                <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black" onClick={() => approveSession(session._id)}>Accept</button>
+                                                <button className="btn bg-red-800 text-white" onClick={() => rejectSession(session._id)}>Reject</button>
                                             </div>
                                         </div>
                                     </div>
@@ -204,8 +204,8 @@ const ViewStudySessions = () => {
                                         <p><span className="font-bold">Registration Fee:</span> {session.registrationFee}</p>
 
 
-                                        <button className="btn btn-primary mt-4" onClick={() => handleUpdate(session._id)}>Update</button>
-                                        <button className="btn btn-danger mt-4" onClick={() => deleteSession(session._id)}>Delete</button>
+                                        <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black mt-4 w-full" onClick={() => handleUpdate(session._id)}>Update</button>
+                                        <button className="btn bg-red-800 mt-4 w-full text-white" onClick={() => deleteSession(session._id)}>Delete</button>
 
                                     </div>
                                 </div>
@@ -231,7 +231,7 @@ const ViewStudySessions = () => {
                             <label htmlFor="amount">Amount (if paid):</label>
                             <input type="number" id="amount" name="amount" />
                             <br />
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-outline border-0 border-b-4 border-t-2 border-black">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -265,7 +265,7 @@ const ViewStudySessions = () => {
                                 required
                             />
                             <br />
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-outline border-0 border-b-4 border-t-2 border-black">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -310,7 +310,7 @@ const ViewStudySessions = () => {
                                 required
                             />
                             <br />
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-outline border-0 border-b-4 border-t-2 border-black">Submit</button>
                         </div>
                     </form>
                 </div>

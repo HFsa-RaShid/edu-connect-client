@@ -85,7 +85,7 @@ const ViewUsers = () => {
     };
 
     return (
-        <div className='min-h-screen'>
+        <div className='min-h-screen mb-4'>
             <h1 className="pt-20 text-center font-bold text-3xl">Users</h1>
             <div className="flex justify-center py-4">
                 <input
@@ -101,6 +101,7 @@ const ViewUsers = () => {
             <table className="min-w-full">
                 <thead>
                     <tr>
+                        <th className="px-4 py-2 text-left">Photo</th>
                         <th className="px-4 py-2 text-left">Name</th>
                         <th className="px-4 py-2 text-left">Email</th>
                         <th className="px-4 py-2 text-left">Role</th>
@@ -110,6 +111,9 @@ const ViewUsers = () => {
                 <tbody>
                     {Array.isArray(filteredUsers) && filteredUsers.map(user => (
                         <tr key={user._id}>
+                            <td className="border px-4 py-2 flex justify-center">
+                                <img src={user.image} className='w-[40px] h-[40px] rounded-full' />
+                            </td>
                             <td className="border px-4 py-2">{user.name}</td>
                             <td className="border px-4 py-2">{user.email}</td>
                             <td className="border px-4 py-2">{user.role}</td>
@@ -117,7 +121,7 @@ const ViewUsers = () => {
                                 {(user.role === "tutor" || user.role === "student") && (
                                     <button
                                         onClick={() => openModal(user)}
-                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                        className="btn btn-outline border-0 border-b-4 border-t-2 border-black"
                                     >
                                         Update Role
                                     </button>
@@ -149,10 +153,10 @@ const ViewUsers = () => {
                                 <br />
                                 <button
                                     type="button"
-                                    className="btn btn-primary"
+                                    className="btn btn-outline border-0 border-b-4 border-t-2 border-black"
                                     onClick={() => {
                                         updateUserRole(selectedUser._id);
-                                        document.getElementById('my_modal_3').close(); // Close the modal after updating role
+                                        document.getElementById('my_modal_3').close();
                                     }}
                                 >
                                     Update Role

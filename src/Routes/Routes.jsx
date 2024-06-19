@@ -23,13 +23,14 @@ import CreateNotes from "../pages/student/createNotes/CreateNotes";
 import ManageNotes from "../pages/student/managePersonalNotes/ManageNotes";
 import NoteDetails from "../pages/student/managePersonalNotes/NoteDetails";
 import BookedSessionMaterials from "../pages/student/bookedSessionMaterials/BookedSessionMaterials";
+import ErrorPage from "../pages/errorPage/ErrorPage";
 
 
 export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
-    //   errorElement: <ErrorPage></ErrorPage>,
+      errorElement: <ErrorPage></ErrorPage>,
       
       children: [
         {

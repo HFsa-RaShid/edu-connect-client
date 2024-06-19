@@ -142,7 +142,7 @@ const CreateStudySession = () => {
             className="input input-bordered w-full bg-gray-200"
           />
         </div>
-        <button type="submit" className="btn btn-primary w-full" disabled={loading}>
+        <button type="submit" className="btn btn-outline border-0 border-b-4 border-t-2 border-black text-xl  font-bold w-full" disabled={loading}>
           {loading ? "Creating..." : "Create Session"}
         </button>
       </form>

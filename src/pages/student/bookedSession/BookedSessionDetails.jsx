@@ -84,7 +84,7 @@ const BookedSessionDetails = () => {
                     <p><span className="font-bold my-1">Duration: </span>{duration}</p>
                     <p><span className="font-bold my-1">Fee: </span>{registrationFee}</p>
                     <div className="card-actions justify-center">
-                        <button className="btn my-1" onClick={() => document.getElementById('my_modal_3').showModal()}>
+                        <button className="btn btn-outline border-0 border-b-4 border-t-2 border-white text-white px-4 font-bold my-2 text-[18px]" onClick={() => document.getElementById('my_modal_3').showModal()}>
                             Send Review
                         </button>
                     </div>
@@ -116,7 +116,7 @@ const BookedSessionDetails = () => {
 
                         </div>
                         <div className="flex justify-end p-4">
-                            <button type="submit" className="btn btn-primary">Submit Review</button>
+                            <button type="submit" className="btn btn-outline border-0 border-b-4 border-t-2 border-black px-4 font-bold ">Submit Review</button>
                         </div>
                     </form>
                 </div>

@@ -114,7 +114,7 @@ const BookedSessionMaterials = () => {
                                                         </a>
                                                     </div>
                                                     <div>
-                                                    <button className="btn mt-4" onClick={() => handleShowImage(material.image)}>See Image</button>
+                                                    <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black  px-8  font-bold my-4" onClick={() => handleShowImage(material.image)}>See Image</button>
                                                     </div>
                                                 </li>
                                             ))}
@@ -137,7 +137,7 @@ const BookedSessionMaterials = () => {
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleCloseModal}>✕</button>
                         <img src={selectedImage} alt="Material" className="w-full h-auto" />
                         <div className="mt-4 flex justify-center">
-                            <button className="btn " onClick={() => handleDownloadImage(selectedImage, 'Material Image')}><span>Download</span> <FiDownload /></button>
+                            <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black  px-8 font-bold" onClick={() => handleDownloadImage(selectedImage, 'Material Image')}><span>Download</span> <FiDownload /></button>
                         </div>
                     </div>
                 </div>

@@ -7,8 +7,8 @@ const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const Payment = () => {
     const {id} = useParams();
     return (
-        <div className="min-h-screen">
-            <h1 className="py-20">PAYMENT{id}</h1>
+        <div className="min-h-screen w-[70%] mx-auto ">
+            <h1 className="py-40">PAYMENT</h1>
             <Elements stripe={stripePromise}>
                 <CheckoutForm sessionId={id}>
 

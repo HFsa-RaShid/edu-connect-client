@@ -17,7 +17,7 @@ const StudySessions = () => {
             </div>
             {approveSession.length > 6 && (
                 <div className='flex justify-center my-6'>
-                <NavLink to='/AllStudySessions'><button className="see-all-sessions btn">See All Sessions</button></NavLink>
+                <NavLink to='/AllStudySessions'><button className="btn btn-outline border-0 border-b-4 border-t-2 border-black  px-10 text-xl font-bold">See All Sessions</button></NavLink>
                 </div>
             )}
         </div>

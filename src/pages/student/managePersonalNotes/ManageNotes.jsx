@@ -267,14 +267,14 @@ const ManageNotes = () => {
                                                 )
                                             }
                                             <div className="card-actions justify-end">
-                                                <button className="btn" onClick={() => openModal(note)}>Update</button>
-                                                <button className="btn" onClick={() => handleDelete(note._id)}>Delete</button>
+                                                <button className="btn btn-outline border-0 border-b-4 border-t-2 border-green-800  px-8 font-bold" onClick={() => openModal(note)}>Update</button>
+                                                <button className="btn btn-outline border-0 border-b-4 border-t-2 border-red-800  px-8 font-bold mx-4" onClick={() => handleDelete(note._id)}>Delete</button>
                                             </div>
                                         </div>
                                     </div>
                                 ))}
                             </div>
-                            <div className="join">
+                            <div className="join my-8 flex justify-center">
                                 {Array.from({ length: Math.ceil(noteData.total / notesPerPage) }, (_, i) => (
                                     <button
                                         key={i + 1}
@@ -319,8 +319,8 @@ const ManageNotes = () => {
                                                 />
                                             </div>
                                             <div className="flex justify-end">
-                                                <button type="submit" className="btn bg-blue-500 text-white hover:bg-blue-600 mr-2">Update</button>
-                                                <button type="button" className="btn bg-gray-300 text-gray-700 hover:bg-gray-400" onClick={() => document.getElementById('updateModal').close()}>Cancel</button>
+                                                <button type="submit" className="btn btn-outline border-0 border-b-4 border-t-2 border-green-800  px-4 font-bold mr-4">Update</button>
+                                                <button type="button" className="btn bg-red-400 text-white hover:bg-gray-400" onClick={() => document.getElementById('updateModal').close()}>Cancel</button>
                                             </div>
                                         </>
                                     )}

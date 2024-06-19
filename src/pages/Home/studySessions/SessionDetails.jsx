@@ -123,9 +123,7 @@ const SessionDetails = () => {
     return (
         <div className="min-h-screen p-8">
             <div className="card  mt-20 bg-base-100 text-white " style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://i.ibb.co/YXFHRzv/Online-learning-scaled.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                {/* <figure>
-                    <img src="https://i.ibb.co/YXFHRzv/Online-learning-scaled.jpg" className='w-full h-full' alt="Session Image" />
-                </figure> */}
+                
                 <div className="card-body">
                     <h1 className="text-3xl font-bold mb-2 text-center">{title}</h1>
                     <div className='w-[80%] mx-auto my-6'>
@@ -148,20 +146,20 @@ const SessionDetails = () => {
                     </div>
                     <div className="card-actions justify-center">
                         <NavLink to={`/sessionDetails/${id}/review`}>
-                            <button className='btn'>Reviews</button>
+                            <button className="btn btn-outline border-0 border-b-4 border-t-2 border-white text-white px-4 font-bold my-2 text-[16px]">Reviews</button>
                         </NavLink>
                         {
                             isRegistrationOver || isUserAdminOrTutor || isUserBooked ? (
-                                <button disabled className='btn'>Book Now</button>
+                                <button disabled className="btn btn-outline border-0 border-b-4 border-t-2 border-white text-white px-4 font-bold my-2 text-[16px]">Book Now</button>
                             ) : (
                                 <>
                                 {
                                     isUserFee ? (
-                                        <button className='btn' onClick={handleBooking}>Book Now</button>
+                                        <button className="btn btn-outline border-0 border-b-4 border-t-2 border-white text-white px-4 font-bold my-2 text-[16px] ml-2" onClick={handleBooking}>Book Now</button>
 
                                     ) : (
                                         <Link to={`/sessionDetails/${id}/payment`}>
-                                        <button className='btn'>Book Now</button>
+                                        <button className="btn btn-outline border-0 border-b-4 border-t-2 border-white text-white px-4 font-bold my-2 text-[16px] mx-2">Book Now</button>
                                     </Link>
 
                                     )

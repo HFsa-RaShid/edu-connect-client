@@ -60,7 +60,7 @@ const BookedSession = () => {
                                         <p><strong>Instructor:</strong> {sessionDetails[session.sessionId].tutorName}</p>
                                         <p><strong>Class Start Date:</strong> {sessionDetails[session.sessionId].classStartDate}</p>
                                         <NavLink to={`/bookedSessionDetails/${session.sessionId}`}>
-                                            <button className="btn mt-4">View Details</button>
+                                            <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black px-4 font-bold mt-8">View Details</button>
                                         </NavLink>
                                     </div>
                                 ) : (

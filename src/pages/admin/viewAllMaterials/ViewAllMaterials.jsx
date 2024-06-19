@@ -110,9 +110,9 @@ const ViewAllMaterials = () => {
                                                             Drive Link
                                                         </a>
                                 <div className="card-actions justify-end">
-                                    <button className="btn " onClick={() => handleShowImage(material.image)}>See Image</button>
+                                    <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black" onClick={() => handleShowImage(material.image)}>See Image</button>
                                    
-                                    <button className="btn " onClick={() => handleDeleteMaterial(material._id)}>Delete</button>
+                                    <button className="btn bg-red-800 text-white" onClick={() => handleDeleteMaterial(material._id)}>Delete</button>
                                 </div>
                             </div>
                         </div>

@@ -14,10 +14,8 @@ const StudySessionsCard = ({ displaySession }) => {
     const isRegistrationOver = new Date(registrationEndDate) < new Date();
 
     return (
-        <div className="card bg-base-100 h-[280px] shadow-xl image-full z-10">
-            <figure>
-                <img src="https://i.ibb.co/G9XH87b/Hand-holding-a-tablet-with-a-light-hologram-of-a-brain-above-it.jpg" alt="Session" />
-            </figure>
+        <div className="card bg-base-100 h-[280px] shadow-xl image-full z-10" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://i.ibb.co/G9XH87b/Hand-holding-a-tablet-with-a-light-hologram-of-a-brain-above-it.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
                 {
@@ -34,7 +32,7 @@ const StudySessionsCard = ({ displaySession }) => {
                     <button className="btn">
                         {isRegistrationOver ? 'Closed' : 'Ongoing'}
                     </button>
-                    <NavLink to={`/sessionDetails/${_id}`}><button className="btn">Read More</button></NavLink>
+                    <NavLink to={`/sessionDetails/${_id}`}><button className="btn btn-outline border-0 border-b-4 border-t-2 border-white text-white px-4 font-bold">Read More</button></NavLink>
                 </div>
             </div>
         </div>

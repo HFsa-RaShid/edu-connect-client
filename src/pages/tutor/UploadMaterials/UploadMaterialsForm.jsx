@@ -100,7 +100,7 @@ const UploadMaterialsForm = () => {
                     />
                     {errors.image && <span className="text-red-600">Image is required</span>}
                 </div>
-                <button type="submit" className="btn btn-primary w-full" disabled={loading}>
+                <button type="submit" className="btn btn-outline border-0 border-b-4 border-t-2 border-black text-xl  font-bold w-full" disabled={loading}>
                     {loading ? "Uploading..." : "Upload Material"}
                 </button>
             </form>

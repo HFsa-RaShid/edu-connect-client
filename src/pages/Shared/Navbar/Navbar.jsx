@@ -11,6 +11,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LuUpload } from "react-icons/lu";
+import { IoMenu } from "react-icons/io5";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -119,9 +120,12 @@ const Navbar = () => {
       <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl bg-black text-white">
         <div className="flex-none">
           {user && (
-            <button className="btn btn-square btn-ghost" onClick={handleMenuClick}>
-              <img src={profileImage} className="rounded-full h-[40px] w-[40px]" key={profileImage} />
+           
+            <button onClick={handleMenuClick} className="text-3xl">
+              <IoMenu />
             </button>
+           
+            
           )}
         </div>
         <div className="flex-1">
@@ -131,7 +135,11 @@ const Navbar = () => {
           
 
           {user ? (
-            <button onClick={handleSignOut} className="py-2 px-4 rounded-xl font-bold border border-white text-[12px] lg:text-[18px]">Sign Out</button>
+            <>
+            <img src={profileImage} className="rounded-full h-[42px] w-[42px] mr-4" key={profileImage} />
+            <button onClick={handleSignOut} className="btn btn-outline border-0 border-b-4 border-t-2 border-white text-[18px] text-white  px-2  font-bold">Sign Out</button>
+            </>
+             
           ) : (
             <NavLink to='/login'>
               <button className="btn btn-outline border-0 border-b-4 border-t-2 border-white text-white px-3 text-xl font-bold">Sign In</button>
@@ -149,8 +157,8 @@ const Navbar = () => {
             
             <h2 className="text-xl font-bold mb-6">Dashboard</h2>
             <hr></hr>
-            <div className="ml-16 h-[80px] w-[75px] rounded-full relative bg-slate-300 mt-6">
-              <img key={profileImage} src={`${profileImage}`} className="rounded-full h-[80px] w-[75px] " />
+            <div className="ml-16 h-[80px] w-[80px] rounded-full relative bg-slate-300 mt-6">
+              <img key={profileImage} src={`${profileImage}`} className="rounded-full h-[80px] w-[80px] " />
            
                 <MdEditSquare className="bottom-0 right-0 absolute text-3xl bg-white border-4 rounded-full" onClick={handleEditButtonClick} />
               
@@ -186,7 +194,8 @@ const Navbar = () => {
                 <button type="submit" disabled={loading} className="mt-2 py-2 px-4 rounded-xl font-bold border  text-black"><LuUpload /></button>
               </form> */}
             
-            <p className="my-6 text-center text-xl font-bold">{userData && userData.name}</p>
+            <p className="mt-6 text-center text-xl font-bold">{userData && userData.name}</p>
+            <p className="text-center mb-6">({userData.role})</p>
             <hr></hr>
             
             <NavLink to='/' className="block py-2">Home</NavLink>

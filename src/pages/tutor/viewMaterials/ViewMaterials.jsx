@@ -141,11 +141,11 @@ const ViewMaterials = () => {
                                                             Drive Link
                                                         </a>
                                    
-                                    <div className="card-actions justify-end">
-                                    <button className="btn btn-danger" onClick={() => handleShowImage(material.image)}>See Image</button>
-                                        <button className="btn btn-danger" onClick={() => handleUpdateClick(material)}>Update</button>
+                                    <div className="card-actions justify-end gap-4 mt-4">
+                                    <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black" onClick={() => handleShowImage(material.image)}>See Image</button>
+                                        <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black" onClick={() => handleUpdateClick(material)}>Update</button>
                                         
-                                        <button className="btn btn-danger" onClick={() => handleDelete(material._id)}>Delete</button>
+                                        <button className="btn bg-red-800 text-white" onClick={() => handleDelete(material._id)}>Delete</button>
                                     </div>
                                 </div>
                             </div>
