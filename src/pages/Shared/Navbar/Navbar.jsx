@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LuUpload } from "react-icons/lu";
 import { IoMenu } from "react-icons/io5";
+import useAdmin from "../../../HOOKS/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -21,6 +22,7 @@ const Navbar = () => {
   const [showForm, setShowForm] = useState(false); 
   const axiosSecure = useAxiosSecure();
   const { userData, refetch } = useUserData(user?.email);
+  const [isAdmin] = useAdmin();
 
   const [isDashboardVisible, setIsDashboardVisible] = useState(false);
   const [profileImage, setProfileImage] = useState("");
@@ -196,9 +198,11 @@ const Navbar = () => {
             
             <p className="mt-6 text-center text-xl font-bold">{userData && userData.name}</p>
             <p className="text-center mb-6">({userData.role})</p>
+            <p>{isAdmin ? "Admin" : "Not Admin"}</p>
             <hr></hr>
             
             <NavLink to='/' className="block py-2">Home</NavLink>
+            
             
              {userData && userData.role === "tutor" && (
               <>
@@ -208,13 +212,14 @@ const Navbar = () => {
                 <NavLink to='/viewMaterials' className="block py-2"> View all materials</NavLink>
               </>
             )}
-            {userData && userData.role === "admin" && (
+            { isAdmin && (
               <>
                 <NavLink to='/viewUsers' className="block py-2">View Users</NavLink>
                 <NavLink to='/viewStudySession' className="block py-2">View all Study Sessions</NavLink>
                 <NavLink to='/ViewAllMaterials' className="block py-2">View all materials</NavLink>
               </>
-            )}
+            ) 
+            }
             {userData && userData.role === "student" && (
               <>
                 <NavLink to='/bookedSession' className="block py-2">View booked session</NavLink>

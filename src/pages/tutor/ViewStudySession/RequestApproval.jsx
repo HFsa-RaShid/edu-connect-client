@@ -2,20 +2,20 @@ import { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useAxiosPublic from "../../../HOOKS/useAxiosPublic";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useParams } from "react-router-dom";
+import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
 
 const RequestApproval = () => {
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
   const [loading, setLoading] = useState(false);
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { id } = useParams();
 
   useEffect(() => {
     if (id) {
-      axiosPublic.get(`/sessions/${id}`)
+      axiosSecure.get(`/sessions/${id}`)
         .then(res => {
           const sessionData = res.data;
           Object.keys(sessionData).forEach(key => {
@@ -26,7 +26,7 @@ const RequestApproval = () => {
           toast.error('Failed to load session data');
         });
     }
-  }, [id, setValue, axiosPublic]);
+  }, [id, setValue, axiosSecure]);
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -44,7 +44,7 @@ const RequestApproval = () => {
       status: "pending", 
     };
 
-    axiosPublic.put(`/updateSession/${id}`, sessionData)
+    axiosSecure.put(`/updateSession/${id}`, sessionData)
       .then(() => {
         toast.success('Session updated successfully');
         reset(); 

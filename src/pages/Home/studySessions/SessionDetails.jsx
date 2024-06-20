@@ -42,7 +42,7 @@ const SessionDetails = () => {
 
     useEffect(() => {
         if (user && user.email) {
-            axiosPublic.get(`/users?email=${user.email}`)
+            axiosPublic.get(`/users/notAll?email=${user.email}`)
                 .then(res => {
                     const userData = res.data;
                     if (userData && userData.role) {

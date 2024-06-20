@@ -3,9 +3,8 @@
 import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-
 import PropTypes from 'prop-types';
-
+import useAxiosPublic from "../HOOKS/useAxiosPublic";
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
@@ -14,6 +13,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
+    const axiosPublic = useAxiosPublic();
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -47,14 +47,32 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
+            // const userEmail = currentUser?.email || user?.email;
+            // const loggedUser = {email: userEmail}
             setUser(currentUser);
             console.log('observing current provider', currentUser);
+            
+             // if user exists then issue a token
+             if(currentUser){
+                const userInfo = {email: currentUser.email };
+                axiosPublic.post('/jwt', userInfo)
+                .then(res => {
+                    // console.log('token response',res.data);
+                    if(res.data.token){
+                        localStorage.setItem('access-token',res.data.token)
+                    }
+                })
+            }
+            else{
+                localStorage.removeItem('access-token')
+               
+            }
             setLoading(false);
         });
         return () => {
             unSubscribe();
         }
-    }, []);
+    }, [axiosPublic,user?.email]);
 
     const authInfo = { user, createUser, signInUser,googleSignIn,githubSignIn, logOut, loading, updateUserProfile };
 

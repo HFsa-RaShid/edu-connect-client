@@ -1,24 +1,24 @@
 import { useParams } from "react-router-dom";
-import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useContext, useLayoutEffect, useState } from "react";
 import Rating from "./Rating"; 
 
 import Swal from "sweetalert2";
 import useUserData from "../../../HOOKS/useUserData";
+import useAxiosPublic from "../../../HOOKS/useAxiosPublic";
 
 const BookedSessionDetails = () => {
     const { id } = useParams();
-    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
     const {user} = useContext(AuthContext);
-    const { userData } = useUserData(user.email);
+    const { userData } = useUserData(user?.email);
     const [sessionDetails, setSessionDetails] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [rating, setRating] = useState(0);
     const [reviewText, setReviewText] = useState(''); 
 
     useLayoutEffect(() => {
-        axiosSecure.get(`/sessions/${id}`)
+        axiosPublic.get(`/sessions/${id}`)
             .then((res) => {
                 setSessionDetails(res.data);
                 setIsLoading(false);
@@ -27,7 +27,7 @@ const BookedSessionDetails = () => {
                 setIsLoading(false);
                 console.error("Error fetching session details:", err);
             });
-    }, [id, axiosSecure]);
+    }, [id, axiosPublic]);
 
    
     const {
@@ -52,7 +52,7 @@ const BookedSessionDetails = () => {
             dateTime: new Date().toISOString(),
         };
 
-        axiosSecure.post('/reviews', reviewData)
+        axiosPublic.post('/reviews', reviewData)
             .then((res) => {
                 Swal.fire({
                     icon: 'success',

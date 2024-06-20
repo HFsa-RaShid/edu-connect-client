@@ -1,18 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPublic";
+
+import useAxiosSecure from "./useAxiosSecure";
 
 
 const usePending = () => {
-    const axiosPublic = useAxiosPublic();
-   const {refetch, data: session = []} = useQuery({
-    queryKey: ['session'],
+    const axiosSecure = useAxiosSecure();
+   const {refetch, data: pending = []} = useQuery({
+    queryKey: ['pending'],
     queryFn: async () =>{
-        const res = await axiosPublic.get('/pending') 
+        const res = await axiosSecure.get('/pending') 
         return res.data;
     }
 
    })
-   return [session,refetch]
+   return [pending,refetch]
 };
 
 export default usePending;

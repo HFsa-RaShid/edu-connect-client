@@ -1,4 +1,4 @@
-import React from 'react';
+
 import useApprove from '../../../HOOKS/useApprove';
 import StudySessionsCard from './StudySessionsCard';
 import { NavLink } from 'react-router-dom';

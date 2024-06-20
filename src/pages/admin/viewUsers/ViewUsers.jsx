@@ -1,46 +1,28 @@
 
-import  { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Swal from 'sweetalert2';
-import useAxiosPublic from "../../../HOOKS/useAxiosPublic";
+import useAxiosSecure from '../../../HOOKS/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
 const ViewUsers = () => {
-    const [users, setUsers] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [filteredUsers, setFilteredUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [selectedRole, setSelectedRole] = useState("");
-    const axiosPublic = useAxiosPublic();
+    const [searchTerm, setSearchTerm] = useState(""); 
+    const axiosSecure = useAxiosSecure();
 
-    useEffect(() => {
-        axiosPublic.get('/users')
-            .then(res => {
-                const nonAdminUsers = res.data;
-                setUsers(nonAdminUsers);
-                setFilteredUsers(nonAdminUsers); 
-            })
-            .catch(error => {
-                console.error('Error fetching users:', error);
-            });
-    }, [axiosPublic]);
+    const { data: users = [], isLoading, isError, refetch } = useQuery({
+        queryKey: ['users', searchTerm],
+        queryFn: async () => {
+            const url = searchTerm ? `/searchUsers?q=${encodeURIComponent(searchTerm)}` : '/users';
+            const res = await axiosSecure.get(url);
+            return res.data;
+        },
+    });
 
-    // Update user role
     const updateUserRole = (userId) => {
-
-        axiosPublic.put(`/users/${userId}`, { role: selectedRole })
+        axiosSecure.put(`/users/${userId}`, { role: selectedRole })
             .then(() => {
-                setUsers(prevUsers => prevUsers.map(user => {
-                    if (user._id === userId) {
-                        return { ...user, role: selectedRole };
-                    }
-                    return user;
-                }));
-                setFilteredUsers(prevUsers => prevUsers.map(user => {
-                    if (user._id === userId) {
-                        return { ...user, role: selectedRole };
-                    }
-                    return user;
-                }));
-
+                refetch(); 
                 Swal.fire({
                     title: "Role Updated Successfully",
                     icon: "success"
@@ -56,48 +38,31 @@ const ViewUsers = () => {
             });
     };
 
-    // Search users by name or email
-    const handleSearch = (event) => {
-        const searchTerm = event.target.value;
-        setSearchTerm(searchTerm);
-        
-        if (searchTerm === "") {
-            setFilteredUsers(users);
-        } else {
-            axiosPublic.get(`/searchUsers?q=${searchTerm}`)
-                .then(res => {
-                    setFilteredUsers(res.data.filter(user => user.role !== "admin"));
-                })
-                .catch(error => {
-                    console.error('Error searching users:', error);
-                });
-        }
-    };
-
-    const handleRoleSelection = (event) => {
-        setSelectedRole(event.target.value);
-    };
-
     const openModal = (user) => {
         setSelectedUser(user);
         setSelectedRole(user.role);
         document.getElementById('my_modal_3').showModal();
     };
 
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+
     return (
         <div className='min-h-screen mb-4'>
             <h1 className="pt-20 text-center font-bold text-3xl">Users</h1>
-            <div className="flex justify-center py-4">
+
+            <div className="flex justify-center mt-4 mb-4">
                 <input
                     type="text"
+                    className="border px-4 py-2"
+                    placeholder="Search by name or email"
                     value={searchTerm}
                     onChange={handleSearch}
-                    placeholder="Search by name or email"
-                    className="input input-bordered w-full max-w-xs"
                 />
             </div>
 
-            {/* Users Table */}
             <table className="min-w-full">
                 <thead>
                     <tr>
@@ -109,30 +74,27 @@ const ViewUsers = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {Array.isArray(filteredUsers) && filteredUsers.map(user => (
+                    {users.map(user => (
                         <tr key={user._id}>
                             <td className="border px-4 py-2 flex justify-center">
-                                <img src={user.image} className='w-[40px] h-[40px] rounded-full' />
+                                <img src={user.image} className='w-[40px] h-[40px] rounded-full' alt={`${user.name}'s profile`} />
                             </td>
                             <td className="border px-4 py-2">{user.name}</td>
                             <td className="border px-4 py-2">{user.email}</td>
                             <td className="border px-4 py-2">{user.role}</td>
                             <td className="border px-4 py-2">
-                                {(user.role === "tutor" || user.role === "student") && (
-                                    <button
-                                        onClick={() => openModal(user)}
-                                        className="btn btn-outline border-0 border-b-4 border-t-2 border-black"
-                                    >
-                                        Update Role
-                                    </button>
-                                )}
+                                <button
+                                    onClick={() => openModal(user)}
+                                    className="btn btn-outline border-0 border-b-4 border-t-2 border-black"
+                                >
+                                    Update Role
+                                </button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
 
-            {/* Modal for Role Selection */}
             <dialog id="my_modal_3" className="modal">
                 <div className="modal-box">
                     {selectedUser && (
@@ -145,10 +107,11 @@ const ViewUsers = () => {
                                     className="m-4 border px-3 py-2"
                                     name="role"
                                     value={selectedRole}
-                                    onChange={handleRoleSelection}
+                                    onChange={(event) => setSelectedRole(event.target.value)}
                                 >
                                     <option value="tutor">tutor</option>
                                     <option value="student">student</option>
+                                   
                                 </select>
                                 <br />
                                 <button
@@ -171,6 +134,3 @@ const ViewUsers = () => {
 };
 
 export default ViewUsers;
-
-
-
