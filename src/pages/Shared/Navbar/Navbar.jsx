@@ -38,22 +38,6 @@ const Navbar = () => {
       });
   };
 
-  // Theme 
-  // const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
-
-  // const handleToggle = e => {
-  //   if (e.target.checked) {
-  //     setTheme("dark");
-  //   } else {
-  //     setTheme("light");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   localStorage.setItem("theme", theme);
-  //   const localTheme = localStorage.getItem("theme");
-  //   document.querySelector("html").setAttribute("data-theme", localTheme);
-  // }, [theme]);
 
   useEffect(() => {
     if (userData && userData.image) {
@@ -119,11 +103,11 @@ const Navbar = () => {
   
   return (
     <div>
-      <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl bg-black text-white">
+      <div className="navbar fixed z-10 bg-opacity-50 max-w-[424px] md:max-w-screen-xl bg-black text-white">
         <div className="flex-none">
           {user && (
            
-            <button onClick={handleMenuClick} className="text-3xl">
+            <button onClick={handleMenuClick} className="text-2xl md:text-3xl">
               <IoMenu />
             </button>
            
@@ -131,15 +115,14 @@ const Navbar = () => {
           )}
         </div>
         <div className="flex-1">
-          <a className="btn btn-ghost text-3xl font-bold italic">EduConnect</a>
+          <a className="btn btn-ghost text-2xl md:text-3xl font-bold italic">EduConnect</a>
         </div>
         <div className="flex-none">
-          
 
           {user ? (
             <>
             <img src={profileImage} className="rounded-full h-[42px] w-[42px] mr-4" key={profileImage} />
-            <button onClick={handleSignOut} className="btn btn-outline border-0 border-b-4 border-t-2 border-white text-[18px] text-white  px-2  font-bold">Sign Out</button>
+            <button onClick={handleSignOut} className="btn btn-outline border-0 border-b-4 border-t-2 border-white text-[14px] md:text-[18px] text-white  px-2  font-bold">Sign Out</button>
             </>
              
           ) : (
@@ -198,34 +181,57 @@ const Navbar = () => {
             
             <p className="mt-6 text-center text-xl font-bold">{userData && userData.name}</p>
             <p className="text-center mb-6">({userData.role})</p>
-            <p>{isAdmin ? "Admin" : "Not Admin"}</p>
             <hr></hr>
             
-            <NavLink to='/' className="block py-2">Home</NavLink>
+            <NavLink  to='/' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }>Home</NavLink>
             
             
              {userData && userData.role === "tutor" && (
               <>
-                <NavLink to='/create-session' className="block py-2">Create Study Session</NavLink>
-                <NavLink to='/viewMySession' className="block py-2">View Study Sessions</NavLink>
-                <NavLink to='/studyMaterials' className="block py-2">Upload materials</NavLink>
-                <NavLink to='/viewMaterials' className="block py-2"> View all materials</NavLink>
+                <NavLink to='/create-session' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }>Create Study Session</NavLink>
+                <NavLink to='/viewMySession' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }>View Study Sessions</NavLink>
+                <NavLink to='/studyMaterials' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }>Upload materials</NavLink>
+                <NavLink  to='/viewMaterials' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }> View all materials</NavLink>
               </>
             )}
             { isAdmin && (
               <>
-                <NavLink to='/viewUsers' className="block py-2">View Users</NavLink>
-                <NavLink to='/viewStudySession' className="block py-2">View all Study Sessions</NavLink>
-                <NavLink to='/ViewAllMaterials' className="block py-2">View all materials</NavLink>
+                <NavLink to='/viewUsers' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }>View Users</NavLink>
+                <NavLink to='/viewStudySession' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }>View all Study Sessions</NavLink>
+                <NavLink to='/ViewAllMaterials' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }>View all materials</NavLink>
               </>
             ) 
             }
             {userData && userData.role === "student" && (
               <>
-                <NavLink to='/bookedSession' className="block py-2">View booked session</NavLink>
-                <NavLink to='/createNotes' className="block py-2">Create note</NavLink>
-                <NavLink to='/managePersonalNotes' className="block py-2">Manage personal notes</NavLink>
-                <NavLink to='/bookedSessionMaterials' className="block py-2">View Materials</NavLink>
+                <NavLink to='/bookedSession' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }>View booked session</NavLink>
+                <NavLink to='/createNotes' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }>Create note</NavLink>
+                <NavLink to='/managePersonalNotes' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }>Manage personal notes</NavLink>
+                <NavLink to='/bookedSessionMaterials' className={({ isActive }) =>
+                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                        }>View Materials</NavLink>
               
               </>
             )}

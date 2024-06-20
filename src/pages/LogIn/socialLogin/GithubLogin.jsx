@@ -40,7 +40,7 @@ const GithubLogin = () => {
         <div>
             <div className="btn btn-outline border-0 border-b-4 border-t-2 border-black text-black px-8 text-xl font-bold w-full flex items-center">
                     <FaGithub />
-                    <button onClick={handleGithubLogIn} className="font-bold text-[18px]">Github</button>
+                    <button onClick={handleGithubLogIn} className="font-bold text-[16px]">Github</button>
 
                 </div>
                 <ToastContainer />

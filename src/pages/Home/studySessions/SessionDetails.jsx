@@ -129,7 +129,7 @@ const SessionDetails = () => {
                     <div className='w-[80%] mx-auto my-6'>
                         <p className="text-center"><strong>Description: </strong> {description}</p>
                     </div>
-                    <div className='flex justify-evenly items-center text-xl'>
+                    <div className='md:flex justify-evenly items-center text-[18px]md:text-xl'>
                         <div>
                             <p className="mb-2"><strong>Tutor Name: </strong> {tutorName}</p>
                             <p className="mb-1"><strong>Average Rating: </strong>{averageRating} </p>

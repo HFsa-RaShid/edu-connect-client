@@ -1,25 +1,22 @@
-
-
 import { useState, useEffect, useContext } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import Swal from 'sweetalert2';
-import useAxiosPublic from "../../../HOOKS/useAxiosPublic";
 import { AuthContext } from '../../../provider/AuthProvider';
 import useAxiosSessionsByTutor from '../../../HOOKS/useAxiosSessionsByTutor';
 import { NavLink } from 'react-router-dom';
+import useAxiosSecure from '../../../HOOKS/useAxiosSecure';
 
 const ViewMySession = () => {
     const { user, loading } = useContext(AuthContext);
     const { refetch } = useAxiosSessionsByTutor();
     const [approvedSessions, setApprovedSessions] = useState([]);
     const [rejectedSessions, setRejectedSessions] = useState([]);
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const [Loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (!loading && user) {
-            axiosPublic.get(`/sessionsByTutor/${user?.email}?status=approved`)
+            axiosSecure.get(`/sessionsByTutor/${user?.email}?status=approved`)
                 .then(response => {
                    
                     setApprovedSessions(response.data);
@@ -33,7 +30,7 @@ const ViewMySession = () => {
                     setLoading(false);
                 });
 
-            axiosPublic.get(`/sessionsByTutor/${user?.email}?status=rejected`)
+            axiosSecure.get(`/sessionsByTutor/${user?.email}?status=rejected`)
                 .then(response => {
                     setRejectedSessions(response.data);
                     refetch();
@@ -44,7 +41,7 @@ const ViewMySession = () => {
                     setLoading(false);
                 });
         }
-    }, [axiosPublic, user, loading,refetch]);
+    }, [axiosSecure, user, loading,refetch]);
 
     return (
         <div className="min-h-screen p-4">
@@ -97,13 +94,13 @@ const ViewMySession = () => {
                     <div className="overflow-x-auto">
                         <table className="min-w-full bg-white border border-gray-200">
                             <thead>
-                                <tr>
-                                    <th className="px-4 py-2">Title</th>
+                                <tr className='text-[9px] md:text-[16px]'>
+                                    <th className=" py-2">Title</th>
                                     
-                                    <th className="px-4 py-2">Status</th>
-                                    <th className="px-4 py-2">FeedBack</th>
-                                    <th className="px-4 py-2">Rejection Reason</th>
-                                    <th className="px-4 py-2">Actions</th>
+                                    <th className=" py-2">Status</th>
+                                    <th className=" py-2">FeedBack</th>
+                                    <th className=" py-2">Rejection Reason</th>
+                                    <th className=" py-2">Actions</th>
                                 </tr>
                             </thead>
                             {Loading ? (
@@ -113,15 +110,15 @@ const ViewMySession = () => {
                             ) :
                             <tbody>
                                 {rejectedSessions.map(session => (
-                                    <tr key={session._id} className='text-center'>
-                                        <td className="border px-4 py-2">{session.title}</td>
+                                    <tr key={session._id} className='text-center text-[9px] md:text-[16px]'>
+                                        <td className="border  py-2">{session.title}</td>
                                         
-                                        <td className="border px-4 py-2">{session.status}</td>
-                                        <td className="border px-4 py-2">{session.feedback}</td>
-                                        <td className="border px-4 py-2">{session.rejectionReason}</td>
-                                        <td className="border px-4 py-2">
+                                        <td className="border  py-2">{session.status}</td>
+                                        <td className="border  py-2">{session.feedback}</td>
+                                        <td className="border  py-2">{session.rejectionReason}</td>
+                                        <td className="border  py-2">
                                             <NavLink to={`/requestApproval/${session._id}`}>
-                                            <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black ">
+                                            <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black text-[9px] md:text-[16px]">
                                                 Request Approval
                                             </button>
                                             </NavLink>

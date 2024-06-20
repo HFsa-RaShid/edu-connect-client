@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+
 import banner from '../../../assets/banner.avif'
 
 const Banner = () => {
@@ -6,8 +6,8 @@ const Banner = () => {
         <div className="max-w-screen-xl ">
             
             <img src={banner} className='w-full relative h-[650px] ' />
-            <div className='absolute top-[30%] left-[10%] w-2/5 '>
-                <h1 className='text-white text-5xl font-bold'>Experience a new era of AI-enhanced learning</h1>
+            <div className='absolute top-[30%] left-[10%] w-[80%] md:w-2/5 '>
+                <h1 className='text-white text-3xl md:text-5xl font-bold'>Experience a new era of AI-enhanced learning</h1>
                 <br></br>
                 <br></br>
                 <p className='text-white font-semibold '>

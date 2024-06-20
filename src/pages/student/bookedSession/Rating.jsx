@@ -1,5 +1,4 @@
 
-import React from 'react';
 
 const Rating = ({ value, onChange, isRequired }) => {
     const starClass = "text-4xl text-yellow-500 cursor-pointer"; 

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../HOOKS/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import useAdmin from '../../../HOOKS/useAdmin';
 
 const ViewUsers = () => {
     const [selectedUser, setSelectedUser] = useState(null);
@@ -63,33 +64,37 @@ const ViewUsers = () => {
                 />
             </div>
 
-            <table className="min-w-full">
+            <table className="w-[95%] mx-auto text-[9px] md:text-[16px] text-center md:min-w-full">
                 <thead>
                     <tr>
-                        <th className="px-4 py-2 text-left">Photo</th>
-                        <th className="px-4 py-2 text-left">Name</th>
-                        <th className="px-4 py-2 text-left">Email</th>
-                        <th className="px-4 py-2 text-left">Role</th>
-                        <th className="px-4 py-2 text-left">Action</th>
+                        <th className=" py-2 ">Photo</th>
+                        <th className=" py-2 ">Name</th>
+                        <th className=" py-2 ">Email</th>
+                        <th className="py-2 ">Role</th>
+                        <th className=" py-2 ">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {users.map(user => (
                         <tr key={user._id}>
                             <td className="border px-4 py-2 flex justify-center">
-                                <img src={user.image} className='w-[40px] h-[40px] rounded-full' alt={`${user.name}'s profile`} />
+                                <img src={user.image} className='w-[40px] h-[36px] md:w-[40px] md:h-[40px] rounded-full' alt={`${user.name}'s profile`} />
                             </td>
-                            <td className="border px-4 py-2">{user.name}</td>
-                            <td className="border px-4 py-2">{user.email}</td>
-                            <td className="border px-4 py-2">{user.role}</td>
-                            <td className="border px-4 py-2">
-                                <button
-                                    onClick={() => openModal(user)}
-                                    className="btn btn-outline border-0 border-b-4 border-t-2 border-black"
-                                >
-                                    Update Role
-                                </button>
+                            <td className="border py-2">{user.name}</td>
+                            <td className="border  py-2">{user.email}</td>
+                            <td className="border  py-2">{user.role}</td>
+                            
+                            <td className="border  py-2">
+                                {user.role !== 'admin' && (
+                                    <button
+                                        onClick={() => openModal(user)}
+                                        className="btn btn-outline border-0 border-b-4 border-t-2 border-black text-[9px] md:text-[16px]"
+                                    >
+                                        Update Role
+                                    </button>
+                                )}
                             </td>
+
                         </tr>
                     ))}
                 </tbody>
@@ -114,16 +119,18 @@ const ViewUsers = () => {
                                    
                                 </select>
                                 <br />
-                                <button
-                                    type="button"
-                                    className="btn btn-outline border-0 border-b-4 border-t-2 border-black"
-                                    onClick={() => {
-                                        updateUserRole(selectedUser._id);
-                                        document.getElementById('my_modal_3').close();
-                                    }}
-                                >
-                                    Update Role
-                                </button>
+                              
+                                        <button
+                                        type="button"
+                                        className="btn btn-outline border-0 border-b-4 border-t-2 border-black"
+                                        onClick={() => {
+                                            updateUserRole(selectedUser._id);
+                                            document.getElementById('my_modal_3').close();
+                                        }}
+                                    >
+                                        Update Role
+                                    </button>
+                                   
                             </div>
                         </form>
                     )}

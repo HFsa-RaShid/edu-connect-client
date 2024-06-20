@@ -491,6 +491,14 @@ const ViewStudySessions = () => {
                                     <div className="card-body items-center text-center">
                                         <h2 className="card-title">{session.title}</h2>
                                         <p>{session.description}</p>
+                                        <p><span className="font-bold">Tutor Name:</span> {session.tutorName}</p>
+                                        <p><span className="font-bold">Tutor Email:</span> {session.tutorEmail}</p>
+                                        <p><span className="font-bold">Registration Start Date:</span> {session.registrationStartDate}</p>
+                                        <p><span className="font-bold">Registration End Date:</span> {session.registrationEndDate}</p>
+                                        <p><span className="font-bold">Class Start Date:</span> {session.classStartDate}</p>
+                                        <p><span className="font-bold">Class End Date:</span> {session.classEndDate}</p>
+                                        <p><span className="font-bold">Duration:</span> {session.duration}</p>
+                                        <p><span className="font-bold">Registration Fee:</span> {session.registrationFee}</p>
                                         <div className="card-actions justify-end">
                                             <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black" onClick={() => approveSession(session._id)}>Accept</button>
                                             <button className="btn bg-red-800 text-white" onClick={() => rejectSession(session._id)}>Reject</button>
@@ -544,7 +552,7 @@ const ViewStudySessions = () => {
                             </select>
                             <br />
                             <label htmlFor="amount">Amount (if paid):</label>
-                            <input type="number" id="amount" name="amount" />
+                            <input type="number" className="border ml-4" name="amount" />
                             <br />
                             <button type="submit" className="btn btn-outline border-0 border-b-4 border-t-2 border-black mt-4">Submit</button>
                         </div>
@@ -560,10 +568,10 @@ const ViewStudySessions = () => {
                         <h3 className="font-bold text-lg">Session Rejection</h3>
                         <div className="py-4">
                             <label htmlFor="rejectionReason">Reason for rejection:</label>
-                            <input type="text" id="rejectionReason" name="rejectionReason" value={rejectionReason} onChange={(e) => setRejectionReason(e.target.value)} required />
+                            <input type="text" className="border ml-4" name="rejectionReason" value={rejectionReason} onChange={(e) => setRejectionReason(e.target.value)} required />
                             <br />
                             <label htmlFor="feedback">Additional feedback:</label>
-                            <textarea id="feedback" name="feedback" rows="4" value={feedback} onChange={(e) => setFeedback(e.target.value)} required></textarea>
+                            <textarea className="border ml-4 my-4" name="feedback" rows="4" value={feedback} onChange={(e) => setFeedback(e.target.value)} required></textarea>
                             <br />
                             <button type="submit" className="btn bg-red-800 text-white mt-4">Submit</button>
                         </div>

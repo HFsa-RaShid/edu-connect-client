@@ -40,7 +40,7 @@ const GoogleLogin = () => {
         <div>
             <div className="btn btn-outline border-0 border-b-4 border-t-2 border-black text-black px-8 text-xl font-bold w-full flex items-center">
                     <FcGoogle />
-                    <button type="button" onClick={handleGoogleLogIn} className="font-bold text-[18px]">Google</button>
+                    <button type="button" onClick={handleGoogleLogIn} className="font-bold text-[16px]">Google</button>
                 </div>
                 <ToastContainer />
         </div>

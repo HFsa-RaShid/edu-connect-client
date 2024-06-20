@@ -8,7 +8,7 @@ const Payment = () => {
     const {id} = useParams();
     return (
         <div className="min-h-screen w-[70%] mx-auto ">
-            <h1 className="py-40">PAYMENT</h1>
+            <h1 className="py-40 text-2xl text-center font-bold">PAYMENT</h1>
             <Elements stripe={stripePromise}>
                 <CheckoutForm sessionId={id}>
 

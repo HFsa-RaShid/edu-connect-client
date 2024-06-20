@@ -33,7 +33,7 @@ const UploadMaterials = () => {
     }, [axiosSecure, user, loading,refetch]);
     return (
         <div className="min-h-screen">
-            <h2 className="text-xl font-semibold mb-2 pt-20">Approved Sessions</h2>
+            <h2 className="text-2xl font-bold mb-2 pt-20 text-center pb-4">Approved Sessions</h2>
                     <div className="overflow-x-auto">
                         <table className="min-w-full bg-white border border-gray-200">
                             <thead>

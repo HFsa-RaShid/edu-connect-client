@@ -123,14 +123,14 @@ const ViewMaterials = () => {
 
     return (
         <div className="min-h-screen p-4">
-            <h2 className="text-2xl font-semibold mb-4 pt-20">Uploaded Materials</h2>
+            <h2 className="text-2xl font-bold mb-4 pt-20 text-center">Uploaded Materials</h2>
             {loading ? (
                 <div className="text-center">
                     <span className="loading loading-spinner loading-lg"></span>
                 </div>
             ) : (
                 materials.length === 0 ? (
-                    <p>No materials uploaded yet.</p>
+                    <p className='text-center'>No materials uploaded yet.</p>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {materials.map(material => (
@@ -199,7 +199,7 @@ const ViewMaterials = () => {
                 <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white p-4 rounded shadow-lg relative">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleCloseModal}>✕</button>
-                        <img src={selectedImage} alt="Material" className="w-full h-auto" />
+                        <img src={selectedImage} alt="Material" className="w-[80%]md:w-full h-[400px] md:h-[480px] " />
                     </div>
                 </div>
             )}

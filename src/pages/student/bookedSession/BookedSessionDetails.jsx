@@ -71,8 +71,8 @@ const BookedSessionDetails = () => {
     };
 
     return (
-        <div className="min-h-screen">
-            <p className="pt-20">{title}</p>
+        <div className="min-h-screen mb-8">
+            <p className="pt-20 text-2xl font-bold text-center">Details</p>
             <div className="card bg-base-100 shadow-md shadow-black mt-10 text-white" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://i.ibb.co/YXFHRzv/Online-learning-scaled.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <h2 className="text-center text-2xl font-semibold pt-6">{title}</h2>
                 <div className="card-body text-center">

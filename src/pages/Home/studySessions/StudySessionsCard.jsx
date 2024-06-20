@@ -19,8 +19,8 @@ const StudySessionsCard = ({ displaySession }) => {
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
                 {
-                    description.length > 150 ? 
-                    <p>{description.slice(0,150)}.......
+                    description.length > 120 ? 
+                    <p>{description.slice(0,120)}.......
                     
                     </p>
                     :

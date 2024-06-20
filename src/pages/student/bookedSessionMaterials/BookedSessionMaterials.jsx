@@ -94,13 +94,13 @@ const BookedSessionMaterials = () => {
     };
 
     return (
-        <div className="flex flex-col items-center space-y-4 min-h-screen">
-            <p className='pt-20'>Materials</p>
+        <div className="flex flex-col items-center space-y-4 min-h-screen mb-10">
+            <p className='pt-20 text-2xl font-bold text-center pb-6'>Materials</p>
             {bookedSessions.length > 0 ? (
-                <div className="space-y-4 grid grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {bookedSessions.map((session) => (
                         <div key={session.sessionId} className="card bg-base-100 shadow-xl">
-                            <div className="card-body">
+                            <div className="card-body ">
                                 
                                 <div>
                                     {sessionMaterials[session.sessionId]?.length > 0 ? (
@@ -135,7 +135,7 @@ const BookedSessionMaterials = () => {
                 <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white p-4 rounded shadow-lg relative">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleCloseModal}>✕</button>
-                        <img src={selectedImage} alt="Material" className="w-full h-auto" />
+                        <img src={selectedImage} alt="Material" className="w-[80%] md:w-full h-[400px] md:h-[480px]" />
                         <div className="mt-4 flex justify-center">
                             <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black  px-8 font-bold" onClick={() => handleDownloadImage(selectedImage, 'Material Image')}><span>Download</span> <FiDownload /></button>
                         </div>

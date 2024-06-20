@@ -35,10 +35,10 @@ const LogIn = () => {
     }
     return (
         <div className="max-w-screen-xl">
-        <div className=" flex  gap-10 justify-evenly">
-            <div className="text-center  min-h-screen bg-slate-400 w-[50%]">
+        <div className=" md:flex  gap-10 justify-evenly">
+            <div className="relative text-center md:min-h-screen md:w-1/2">
                 <img src={login} className="w-full h-full relative"/>
-                <div className="absolute text-white top-[30%] p-8">
+                <div className="absolute text-white top-[2%] md:top-[30%] p-8">
                 <h1 className="text-4xl font-bold">Join EduConnect and learn with us</h1>
                 <br></br>
                 <p className="text-2xl">Sign in to EduConnect to get started!</p>
@@ -51,7 +51,7 @@ const LogIn = () => {
             
             </div>
             
-            <div className=" w-[50%] max-w-sm  bg-base-100 flex items-center ">
+            <div className=" md:w-[50%] max-w-sm  bg-base-100 flex items-center ">
                
             <form className="card-body" onSubmit={handleSignIn}>
             <h1 className="text-4xl text-center font-bold mb-4">Sign In Now!!</h1>
