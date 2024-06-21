@@ -72,7 +72,7 @@ const RequestApproval = () => {
 
   return (
     <div className="max-w-screen-lg mx-auto p-4 ">
-      <h1 className="text-2xl font-bold mb-4 mt-20">Update Study Session</h1>
+      <h1 className="text-3xl font-bold mb-4 mt-20">Update Study Session</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label className="block font-bold">Session Title</label>

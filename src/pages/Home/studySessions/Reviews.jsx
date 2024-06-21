@@ -4,11 +4,17 @@ import { useParams } from 'react-router-dom';
 import useAxiosPublic from '../../../HOOKS/useAxiosPublic';
 import { useEffect, useState } from 'react';
 import { Rating } from '@smastrom/react-rating';
-
 import '@smastrom/react-rating/style.css';
 import { Helmet } from 'react-helmet-async';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Reviews = () => {
+
+    useEffect(() => {
+        AOS.init({duration: 2000});
+    }, []);
+
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();
     const [reviews, setReviews] = useState([]);
@@ -26,12 +32,13 @@ const Reviews = () => {
             });
     }, [id, axiosPublic]);
 
+
     return (
         <div className='min-h-screen'>
             <Helmet>
                 <title>Reviews | EduConnect</title>
             </Helmet>
-            <p className='pt-20 text-2xl text-center font-bold pb-4'>Reviews</p>
+            <p className='pt-20 text-3xl text-center font-bold pb-4'>Reviews</p>
             {isLoading ? (
                 <div className="text-center">
                     <span className="loading loading-spinner loading-lg"></span>

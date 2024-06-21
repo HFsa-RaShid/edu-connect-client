@@ -150,7 +150,7 @@ const ViewMaterials = () => {
             <Helmet>
                 <title>Uploaded_Material | EduConnect</title>
             </Helmet>
-            <h2 className="text-2xl font-bold mb-4 pt-20 text-center">Uploaded Materials</h2>
+            <h2 className="text-3xl font-bold mb-4 pt-20 text-center">Uploaded Materials</h2>
             {loading ? (
                 <div className="text-center">
                     <span className="loading loading-spinner loading-lg"></span>

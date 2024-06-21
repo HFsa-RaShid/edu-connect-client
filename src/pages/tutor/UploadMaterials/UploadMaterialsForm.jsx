@@ -67,7 +67,7 @@ const UploadMaterialsForm = () => {
             <Helmet>
                 <title>Upload_Material | EduConnect</title>
             </Helmet>
-            <h2 className="text-2xl font-bold mb-4 pt-20">Upload Material</h2>
+            <h2 className="text-3xl font-bold mb-4 pt-20">Upload Material</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
                     <label className="block font-bold">Title:</label>

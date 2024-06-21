@@ -37,7 +37,7 @@ const UploadMaterials = () => {
             <Helmet>
                 <title>Materials_Upload | EduConnect</title>
             </Helmet>
-            <h2 className="text-2xl font-bold mb-2 pt-20 text-center pb-4">Approved Sessions</h2>
+            <h2 className="text-3xl font-bold mb-2 pt-20 text-center pb-4">Approved Sessions</h2>
                     <div className="overflow-x-auto">
                         <table className="min-w-full bg-white border border-gray-200">
                             <thead>

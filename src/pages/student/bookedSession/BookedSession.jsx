@@ -54,7 +54,7 @@ const BookedSession = () => {
             <Helmet>
                 <title>Booked_Session | EduConnect</title>
             </Helmet>
-            <h2 className="text-2xl font-bold mb-4 pt-20 text-center">Booked Sessions</h2>
+            <h2 className="text-3xl font-bold mb-4 pt-20 text-center">Booked Sessions</h2>
             {isLoading ? (
                 <div className="text-center">
                     <span className="loading loading-spinner loading-lg"></span>

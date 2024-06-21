@@ -7,6 +7,7 @@ import useAxiosPublic from '../../../HOOKS/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
 
+
 const ManageNotes = () => {
     const { user } = useContext(AuthContext);
     const [currentPage, setCurrentPage] = useState(1);
@@ -81,12 +82,14 @@ const ManageNotes = () => {
         setCurrentPage(page);
     };
 
+   
+
     return (
         <div className='min-h-screen'>
             <Helmet>
                 <title>Manage_Note | EduConnect</title>
             </Helmet>
-            <h1 className='pt-20 text-2xl font-bold text-center pb-4'>Manage Notes</h1>
+            <h1 className='pt-20 text-3xl font-bold text-center pb-4'>Manage Notes</h1>
             {isLoading ? (
                 <div className="text-center">
                     <span className="loading loading-spinner loading-lg"></span>
@@ -130,7 +133,7 @@ const ManageNotes = () => {
                             </div>
                         </>
                     ) : (
-                        <p>No notes found.</p>
+                        <p className='text-center'>No notes found.</p>
                     )}
 
                     {/* Modal for update */}

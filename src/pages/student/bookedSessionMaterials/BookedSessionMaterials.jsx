@@ -98,7 +98,7 @@ const BookedSessionMaterials = () => {
             <Helmet>
                 <title>Materials | EduConnect</title>
             </Helmet>
-            <p className='pt-20 text-2xl font-bold text-center pb-6'>Materials</p>
+            <p className='pt-20 text-3xl font-bold text-center pb-6'>Materials</p>
             {bookedSessions.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {bookedSessions.map((session) => (
