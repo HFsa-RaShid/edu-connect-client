@@ -42,7 +42,7 @@ Accessible to logged-in users, displaying comprehensive session information incl
 # Advanced Features:
 + Tanstack Query Integration: Used for data fetching with GET methods.
 + JWT Implementation: Secure token storage in local storage.
-+ Pagination: Implemented for at least two pages.
++ Pagination: Implemented for View All Materials page(admin) and Manage Personal Notes page(student).
 + Admin Feedback on Rejections: Popup for rejection reasons and feedback.
 + Tutor Profile Management: Profile photo upload and change functionality, with additional customization options like adding helmets and animations.
 
