@@ -3,6 +3,7 @@ import { Link, NavLink, useParams } from 'react-router-dom';
 import useAxiosPublic from '../../../HOOKS/useAxiosPublic';
 import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const SessionDetails = () => {
     const { id } = useParams();
@@ -122,6 +123,9 @@ const SessionDetails = () => {
 
     return (
         <div className="min-h-screen p-8">
+            <Helmet>
+                <title>Session_Details | EduConnect</title>
+            </Helmet>
             <div className="card  mt-20 bg-base-100 text-white " style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://i.ibb.co/YXFHRzv/Online-learning-scaled.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 
                 <div className="card-body">

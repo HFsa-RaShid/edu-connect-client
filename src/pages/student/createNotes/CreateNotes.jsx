@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import useAxiosSecure from "../../../HOOKS/useAxiosSecure"; 
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const CreateNotes = () => {
     const { user } = useContext(AuthContext);
@@ -47,6 +48,9 @@ const CreateNotes = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+            <Helmet>
+                <title>Create_Note | EduConnect</title>
+            </Helmet>
             <div className="max-w-md w-full space-y-8">
                 <div>
                     <h2 className="text-center text-3xl font-extrabold text-gray-900">Create a Note</h2>

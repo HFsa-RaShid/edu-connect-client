@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import useApprove from "../../../HOOKS/useApprove";
 import StudySessionsCard from "./StudySessionsCard";
 
@@ -5,7 +6,10 @@ import StudySessionsCard from "./StudySessionsCard";
 const AllStudySessions = () => {
     const [approveSession, refetch] = useApprove();
     return (
-        <div className=''>
+        <div>
+            <Helmet>
+                <title>Sessions | EduConnect</title>
+            </Helmet>
             <h1 className="pt-20 text-center font-bold text-3xl">All Study Sessions</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10">
             {

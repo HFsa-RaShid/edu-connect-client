@@ -5,6 +5,7 @@ import { AuthContext } from '../../../provider/AuthProvider';
 import useAxiosSessionsByTutor from '../../../HOOKS/useAxiosSessionsByTutor';
 import { NavLink } from 'react-router-dom';
 import useAxiosSecure from '../../../HOOKS/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const ViewMySession = () => {
     const { user, loading } = useContext(AuthContext);
@@ -45,6 +46,9 @@ const ViewMySession = () => {
 
     return (
         <div className="min-h-screen p-4">
+            <Helmet>
+                <title>Created_Sessions | EduConnect</title>
+            </Helmet>
             <h1 className="text-center font-bold text-3xl mb-4 pt-16">My Sessions</h1>
             <Tabs>
                 <TabList>

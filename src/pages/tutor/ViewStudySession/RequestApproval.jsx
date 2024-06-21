@@ -1,10 +1,9 @@
 import { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const RequestApproval = () => {
   const { user } = useContext(AuthContext);
@@ -23,7 +22,11 @@ const RequestApproval = () => {
           });
         })
         .catch(error => {
-          toast.error('Failed to load session data');
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Failed to load session data!",
+          });
         });
     }
   }, [id, setValue, axiosSecure]);
@@ -44,14 +47,25 @@ const RequestApproval = () => {
       status: "pending", 
     };
 
-    axiosSecure.put(`/updateSession/${id}`, sessionData)
+    axiosSecure.put(`/updateSession/tutor/${id}`, sessionData)
       .then(() => {
-        toast.success('Session updated successfully');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Session updated successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
         reset(); 
         setLoading(false);
       })
       .catch(() => {
-        toast.error('Failed to update session');
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Failed to update session!",
+        });
         setLoading(false);
       });
   };
@@ -162,7 +176,7 @@ const RequestApproval = () => {
           {loading ? "Updating..." : "Update Session"}
         </button>
       </form>
-      <ToastContainer />
+ 
     </div>
   );
 };

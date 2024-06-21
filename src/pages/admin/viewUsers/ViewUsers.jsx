@@ -3,7 +3,8 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../HOOKS/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
-import useAdmin from '../../../HOOKS/useAdmin';
+import { Helmet } from 'react-helmet-async';
+
 
 const ViewUsers = () => {
     const [selectedUser, setSelectedUser] = useState(null);
@@ -52,6 +53,9 @@ const ViewUsers = () => {
 
     return (
         <div className='min-h-screen mb-4'>
+            <Helmet>
+                <title>All_Users | EduConnect</title>
+            </Helmet>
             <h1 className="pt-20 text-center font-bold text-3xl">Users</h1>
 
             <div className="flex justify-center mt-4 mb-4">

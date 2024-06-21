@@ -5,8 +5,7 @@ import useAxiosSecure from '../../../HOOKS/useAxiosSecure';
 import useAxiosPublic from '../../../HOOKS/useAxiosPublic'; 
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 
 
 const ViewMaterials = () => {
@@ -49,7 +48,8 @@ const ViewMaterials = () => {
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
+                })
+                .then((result) => {
                     if (result.isConfirmed) {
                         setMaterials(materials.filter(material => material._id !== id));
                         Swal.fire({
@@ -92,23 +92,47 @@ const ViewMaterials = () => {
                     .then(materialRes => {
                         if (materialRes.data.modifiedCount > 0) {
                             setMaterials(materials.map(material => material._id === selectedMaterial?._id ? { ...material, ...materialData } : material));
-                            toast.success('Materials updated successfully');
+                           
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Materials updated successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                              });
+
                             reset();
                             document.getElementById('update_modal').close();
                         }
                     })
                     .catch(error => {
                         console.error('Error updating material:', error);
-                        toast.error('An error occurred while updating the material');
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "An error occurred while updating the material!",
+                          });
+
                     })
                     .finally(() => setLoading(false));
             } else {
-                toast.error('Failed to upload image');
+               
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Failed to upload image!",
+                  });
+
                 setLoading(false);
             }
         }).catch(error => {
             console.error('Error uploading image:', error);
-            toast.error('An error occurred while uploading the image');
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "An error occurred while uploading the image!",
+              });
+
             setLoading(false);
         });
     };
@@ -123,6 +147,9 @@ const ViewMaterials = () => {
 
     return (
         <div className="min-h-screen p-4">
+            <Helmet>
+                <title>Uploaded_Material | EduConnect</title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-4 pt-20 text-center">Uploaded Materials</h2>
             {loading ? (
                 <div className="text-center">
@@ -204,7 +231,6 @@ const ViewMaterials = () => {
                 </div>
             )}
 
-            <ToastContainer />
         </div>
     );
 };

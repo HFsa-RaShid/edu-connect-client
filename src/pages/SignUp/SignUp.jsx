@@ -8,6 +8,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAxiosPublic from "../../HOOKS/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -50,6 +51,9 @@ const SignUp = () => {
 
     return (
         <div className="max-w-screen-xl mx-auto">
+            <Helmet>
+                <title>Sign_Up | EduConnect</title>
+            </Helmet>
             <div className="md:flex gap-10 justify-evenly">
                 <div className="relative text-center md:min-h-screen md:w-1/2">
                     <img src={login} alt="Sign Up" className="w-full h-full object-cover" />

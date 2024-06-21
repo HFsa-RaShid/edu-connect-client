@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Rating } from '@smastrom/react-rating';
 
 import '@smastrom/react-rating/style.css';
+import { Helmet } from 'react-helmet-async';
 
 const Reviews = () => {
     const { id } = useParams();
@@ -27,6 +28,9 @@ const Reviews = () => {
 
     return (
         <div className='min-h-screen'>
+            <Helmet>
+                <title>Reviews | EduConnect</title>
+            </Helmet>
             <p className='pt-20 text-2xl text-center font-bold pb-4'>Reviews</p>
             {isLoading ? (
                 <div className="text-center">

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
 import useAxiosSessionsByTutor from "../../../HOOKS/useAxiosSessionsByTutor";
 import { AuthContext } from "../../../provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 
 const UploadMaterials = () => {
@@ -33,6 +34,9 @@ const UploadMaterials = () => {
     }, [axiosSecure, user, loading,refetch]);
     return (
         <div className="min-h-screen">
+            <Helmet>
+                <title>Materials_Upload | EduConnect</title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-2 pt-20 text-center pb-4">Approved Sessions</h2>
                     <div className="overflow-x-auto">
                         <table className="min-w-full bg-white border border-gray-200">

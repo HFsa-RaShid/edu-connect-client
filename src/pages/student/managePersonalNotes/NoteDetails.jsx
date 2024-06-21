@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const NoteDetails = () => {
     const {id} = useParams();
@@ -31,6 +32,9 @@ const NoteDetails = () => {
 
     return (
         <div className="min-h-screen ">
+            <Helmet>
+                <title>Note_Details | EduConnect</title>
+            </Helmet>
             
             <p className="pt-28 text-center pb-10 font-bold text-2xl">{title}</p>
             <p>{description}</p>

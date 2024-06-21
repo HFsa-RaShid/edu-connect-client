@@ -2,10 +2,10 @@ import { useParams } from "react-router-dom";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useContext, useLayoutEffect, useState } from "react";
 import Rating from "./Rating"; 
-
 import Swal from "sweetalert2";
 import useUserData from "../../../HOOKS/useUserData";
 import useAxiosPublic from "../../../HOOKS/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const BookedSessionDetails = () => {
     const { id } = useParams();
@@ -72,6 +72,9 @@ const BookedSessionDetails = () => {
 
     return (
         <div className="min-h-screen mb-8">
+            <Helmet>
+                <title>Session_Details | EduConnect</title>
+            </Helmet>
             <p className="pt-20 text-2xl font-bold text-center">Details</p>
             <div className="card bg-base-100 shadow-md shadow-black mt-10 text-white" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://i.ibb.co/YXFHRzv/Online-learning-scaled.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <h2 className="text-center text-2xl font-semibold pt-6">{title}</h2>

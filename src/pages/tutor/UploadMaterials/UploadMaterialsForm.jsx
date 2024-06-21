@@ -2,10 +2,10 @@ import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import useAxiosPublic from '../../../HOOKS/useAxiosPublic';
 import useAxiosSecure from '../../../HOOKS/useAxiosSecure';
+import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const image_hosting_key = import.meta.env.VITE_image_hosting_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -36,12 +36,24 @@ const UploadMaterialsForm = () => {
             };
             const materialRes = await axiosSecure.post('/materials', materialData);
             if(materialRes.data.insertedId){
-                toast.success('Materials Uploaded successfully');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Materials Uploaded successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                 reset(); 
                 setLoading(false);
             }
             else{
-                toast.error('Failed to upload materials');
+               
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Failed to upload materials!",
+                  });
+                  
                 setLoading(false);
             }
             
@@ -52,6 +64,9 @@ const UploadMaterialsForm = () => {
 
     return (
         <div className="max-w-screen-lg mx-auto p-4">
+            <Helmet>
+                <title>Upload_Material | EduConnect</title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-4 pt-20">Upload Material</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
@@ -104,7 +119,6 @@ const UploadMaterialsForm = () => {
                     {loading ? "Uploading..." : "Upload Material"}
                 </button>
             </form>
-            <ToastContainer />
         </div>
     );
 };

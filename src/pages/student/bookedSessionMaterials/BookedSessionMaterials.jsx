@@ -1,10 +1,10 @@
 
-
 import  { useEffect, useState, useContext } from 'react';
 import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
 import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { FiDownload } from "react-icons/fi";
+import { Helmet } from 'react-helmet-async';
 
 const BookedSessionMaterials = () => {
     const axiosSecure = useAxiosSecure();
@@ -95,6 +95,9 @@ const BookedSessionMaterials = () => {
 
     return (
         <div className="flex flex-col items-center space-y-4 min-h-screen mb-10">
+            <Helmet>
+                <title>Materials | EduConnect</title>
+            </Helmet>
             <p className='pt-20 text-2xl font-bold text-center pb-6'>Materials</p>
             {bookedSessions.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

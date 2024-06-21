@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import GoogleLogin from "./socialLogin/GoogleLogin";
 import GithubLogin from "./socialLogin/GithubLogin";
+import { Helmet } from "react-helmet-async";
 
 const LogIn = () => {
 
@@ -35,6 +36,9 @@ const LogIn = () => {
     }
     return (
         <div className="max-w-screen-xl">
+            <Helmet>
+                <title>Sign_In | EduConnect</title>
+            </Helmet>
         <div className=" md:flex  gap-10 justify-evenly">
             <div className="relative text-center md:min-h-screen md:w-1/2">
                 <img src={login} className="w-full h-full relative"/>

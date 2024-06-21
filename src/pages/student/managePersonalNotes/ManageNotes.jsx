@@ -5,6 +5,7 @@ import useNotes from '../../../HOOKS/useNotes';
 import { NavLink } from 'react-router-dom';
 import useAxiosPublic from '../../../HOOKS/useAxiosPublic';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const ManageNotes = () => {
     const { user } = useContext(AuthContext);
@@ -82,6 +83,9 @@ const ManageNotes = () => {
 
     return (
         <div className='min-h-screen'>
+            <Helmet>
+                <title>Manage_Note | EduConnect</title>
+            </Helmet>
             <h1 className='pt-20 text-2xl font-bold text-center pb-4'>Manage Notes</h1>
             {isLoading ? (
                 <div className="text-center">

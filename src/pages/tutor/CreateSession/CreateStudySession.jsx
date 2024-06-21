@@ -2,9 +2,9 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import useAxiosPublic from "../../../HOOKS/useAxiosPublic";
+import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const CreateStudySession = () => {
   const { user } = useContext(AuthContext);
@@ -30,10 +30,21 @@ const CreateStudySession = () => {
 
     try {
       await axiosPublic.post('/sessions', sessionData);
-      toast.success('Session request sent successfully');
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Session request sent successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
       reset();
     } catch (error) {
-      toast.error('Failed to send session request');
+      
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to send session request!",
+      });
     } finally {
       setLoading(false);
     }
@@ -41,6 +52,9 @@ const CreateStudySession = () => {
 
   return (
     <div className="max-w-screen-lg mx-auto p-4">
+        <Helmet>
+                <title>Create_Session | EduConnect</title>
+        </Helmet>
       <h1 className="text-2xl font-bold mb-4 mt-20 text-center">Create Study Session</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
@@ -145,7 +159,7 @@ const CreateStudySession = () => {
           {loading ? "Creating..." : "Create Session"}
         </button>
       </form>
-      <ToastContainer />
+      
     </div>
   );
 };

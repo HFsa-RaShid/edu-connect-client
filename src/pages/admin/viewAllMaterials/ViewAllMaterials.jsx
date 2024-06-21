@@ -3,9 +3,9 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import useAxiosSecure from '../../../HOOKS/useAxiosSecure';
 import Swal from 'sweetalert2';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 import useAxiosMaterials from '../../../HOOKS/useAxiosMaterials';
+import { Helmet } from 'react-helmet-async';
 
 const ViewAllMaterials = () => {
     const { user } = useContext(AuthContext);
@@ -85,6 +85,9 @@ const ViewAllMaterials = () => {
 
     return (
         <div className="min-h-screen p-4">
+            <Helmet>
+                <title>All_Material | EduConnect</title>
+            </Helmet>
             <h2 className="text-2xl font-semibold mb-4 pt-20">Uploaded Materials</h2>
             {isLoading ? (
                 <div className="text-center">
@@ -129,7 +132,7 @@ const ViewAllMaterials = () => {
                 </div>
             )}
 
-            <div className="join mt-4">
+            <div className="join my-8 flex justify-center">
                 {[...Array(material.totalPages).keys()].map(page => (
                     <button
                         key={page + 1}
@@ -141,7 +144,6 @@ const ViewAllMaterials = () => {
                 ))}
             </div>
 
-            <ToastContainer />
         </div>
     );
 };

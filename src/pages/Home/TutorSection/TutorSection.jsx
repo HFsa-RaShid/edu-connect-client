@@ -22,6 +22,7 @@ const TutorSection = () => {
   return (
     <div id="app" className="h-full my-20">
       <h1 className='text-center font-bold text-3xl'>Tutors</h1>
+      <p className='w-[60%] mx-auto text-center italic py-6'>Our respected tutors combine extensive expertise with a passion for teaching, ensuring each student reaches their full potential.</p>
       <Swiper
         effect="coverflow"
         grabCursor={true}

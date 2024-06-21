@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
 import { NavLink } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const BookedSession = () => {
     const { user } = useContext(AuthContext);
@@ -50,6 +51,9 @@ const BookedSession = () => {
 
     return (
         <div className="min-h-screen">
+            <Helmet>
+                <title>Booked_Session | EduConnect</title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-4 pt-20 text-center">Booked Sessions</h2>
             {isLoading ? (
                 <div className="text-center">
