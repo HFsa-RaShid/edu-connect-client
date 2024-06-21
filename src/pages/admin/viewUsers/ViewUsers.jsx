@@ -89,14 +89,14 @@ const ViewUsers = () => {
                             <td className="border  py-2">{user.role}</td>
                             
                             <td className="border  py-2">
-                                {user.role !== 'admin' && (
+                                {/* {user.role !== 'admin' && ( */}
                                     <button
                                         onClick={() => openModal(user)}
                                         className="btn btn-outline border-0 border-b-4 border-t-2 border-black text-[9px] md:text-[16px]"
                                     >
                                         Update Role
                                     </button>
-                                )}
+                                {/* )} */}
                             </td>
 
                         </tr>
@@ -120,6 +120,7 @@ const ViewUsers = () => {
                                 >
                                     <option value="tutor">tutor</option>
                                     <option value="student">student</option>
+                                    <option value="admin">admin</option>
                                    
                                 </select>
                                 <br />
