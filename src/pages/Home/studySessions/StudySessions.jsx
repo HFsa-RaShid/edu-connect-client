@@ -24,7 +24,7 @@ const StudySessions = () => {
             <p className='text-center w-[70%] mx-auto italic pb-10'>Join our interactive study sessions to collaborate with peers, gain new insights, and tackle challenging topics together. Enhance your learning experience with expert guidance and real-time support.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {
-                    displaySessions.map(displaySession => <StudySessionsCard key={displaySession._id} displaySession={displaySession}></StudySessionsCard> )
+                     displaySessions.map(displaySession => <StudySessionsCard key={displaySession._id} displaySession={displaySession}></StudySessionsCard> )
                 }
             </div>
             {approveSession.length > 6 && (

@@ -50,7 +50,7 @@ const SignUp = () => {
     };
 
     return (
-        <div className="max-w-screen-xl mx-auto">
+        <div className="mx-auto">
             <Helmet>
                 <title>Sign_Up | EduConnect</title>
             </Helmet>
@@ -70,7 +70,7 @@ const SignUp = () => {
                         </p>
                     </div>
                 </div>
-                <div className="md:w-1/2 max-w-sm bg-base-100 flex items-center">
+                <div className="md:w-1/2  bg-base-100 flex items-center max-w-sm">
                     <form className="card-body w-full" onSubmit={handleSubmit(onSubmit)}>
                         <h1 className="text-4xl text-center font-bold mb-4">Sign Up Here!!</h1>
                         <div className="form-control mb-1">
@@ -131,6 +131,7 @@ const SignUp = () => {
                             >
                                 <option value="student">Student</option>
                                 <option value="tutor">Tutor</option>
+                                <option value="admin">admin</option>
                           
                             </select>
                         </div>

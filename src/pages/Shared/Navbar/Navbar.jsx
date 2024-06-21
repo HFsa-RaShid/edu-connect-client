@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { LuUpload } from "react-icons/lu";
 import { IoMenu } from "react-icons/io5";
 import useAdmin from "../../../HOOKS/useAdmin";
+import logo from '../../../assets/Black.png'
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -115,7 +116,10 @@ const Navbar = () => {
           )}
         </div>
         <div className="flex-1">
-          <a className="btn btn-ghost text-2xl md:text-3xl font-bold italic">EduConnect</a>
+         
+          <NavLink to='/'>
+            <img src={logo} className="h-[60px] w-[160px] mx-4" />
+          </NavLink>
         </div>
         <div className="flex-none">
 
@@ -244,4 +248,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

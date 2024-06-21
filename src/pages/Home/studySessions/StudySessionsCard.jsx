@@ -39,8 +39,17 @@ const StudySessionsCard = ({ displaySession }) => {
     );
 };
 
+StudySessionsCard.propTypes = {
+    displaySession: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        registrationEndDate: PropTypes.string.isRequired,
+    }).isRequired
+};
+// StudySessionsCard.propTypes = {
+//     displaySession: PropTypes.node
+// };
+
 export default StudySessionsCard;
 
-StudySessionsCard.propTypes = {
-    displaySession: PropTypes.node
-};
