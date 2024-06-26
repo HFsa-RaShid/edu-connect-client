@@ -89,7 +89,9 @@ const ManageNotes = () => {
             <Helmet>
                 <title>Manage_Note | EduConnect</title>
             </Helmet>
-            <h1 className='pt-20 text-3xl font-bold text-center pb-4'>Manage Notes</h1>
+           
+            
+            <p className='pt-24 text-3xl font-bold text-center pb-4'>Manage Notes</p>
             {isLoading ? (
                 <div className="text-center">
                     <span className="loading loading-spinner loading-lg"></span>

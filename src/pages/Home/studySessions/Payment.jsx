@@ -12,7 +12,10 @@ const Payment = () => {
             <Helmet>
                 <title>Payment | EduConnect</title>
             </Helmet>
-            <h1 className="py-40 text-2xl text-center font-bold">PAYMENT</h1>
+            <p className="pt-24 w-[50%] mx-auto pb-24">
+                <div className="divider divider-neutral text-xl md:text-3xl font-bold text-center">Payment Here!!</div>
+            </p>
+           
             <Elements stripe={stripePromise}>
                 <CheckoutForm sessionId={id}>
 

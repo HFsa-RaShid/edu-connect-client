@@ -115,7 +115,8 @@ const CheckoutForm = ({sessionId}) => {
           options={{
             style: {
               base: {
-                fontSize: '16px',
+                
+                fontSize: '18px',
                 color: '#424770',
                 '::placeholder': {
                   color: '#aab7c4',
@@ -127,7 +128,7 @@ const CheckoutForm = ({sessionId}) => {
             },
           }}
         />
-        <button className="btn border my-6" type="submit" disabled={!stripe || !clientSecret }>
+        <button className="btn bg-green-600 hover:bg-green-700 text-white  border my-10 " type="submit" disabled={!stripe || !clientSecret }>
      
           Pay
         </button>

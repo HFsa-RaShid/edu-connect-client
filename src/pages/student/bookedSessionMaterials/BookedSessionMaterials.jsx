@@ -5,6 +5,7 @@ import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { FiDownload } from "react-icons/fi";
 import { Helmet } from 'react-helmet-async';
+import { NavLink } from 'react-router-dom';
 
 const BookedSessionMaterials = () => {
     const axiosSecure = useAxiosSecure();
@@ -57,48 +58,48 @@ const BookedSessionMaterials = () => {
         }
     }, [axiosSecure, bookedSessions]);
 
-    const handleShowImage = (imageUrl) => {
-        setSelectedImage(imageUrl);
-    };
+    
 
-    const handleCloseModal = () => {
-        setSelectedImage(null);
-    };
+    // const handleCloseModal = () => {
+    //     setSelectedImage(null);
+    // };
 
-    const handleDownloadImage = (imageUrl, title) => {
-        Swal.fire({
-            title: `Download ${title}`,
-            showCancelButton: true,
-            confirmButtonText: 'Download',
-            cancelButtonText: 'Cancel',
-            showLoaderOnConfirm: true,
-            preConfirm: async () => {
-                try {
-                    const response = await fetch(imageUrl);
-                    const blob = await response.blob();
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.style.display = 'none';
-                    a.href = url;
-                    a.download = title;
-                    document.body.appendChild(a);
-                    a.click();
-                    window.URL.revokeObjectURL(url);
-                    Swal.close();
-                } catch (error) {
-                    console.error('Error downloading image:', error);
-                    Swal.showValidationMessage('Download failed');
-                }
-            }
-        });
-    };
+    // const handleDownloadImage = (imageUrl, title) => {
+    //     Swal.fire({
+    //         title: `Download ${title}`,
+    //         showCancelButton: true,
+    //         confirmButtonText: 'Download',
+    //         cancelButtonText: 'Cancel',
+    //         showLoaderOnConfirm: true,
+    //         preConfirm: async () => {
+    //             try {
+    //                 const response = await fetch(imageUrl);
+    //                 const blob = await response.blob();
+    //                 const url = window.URL.createObjectURL(blob);
+    //                 const a = document.createElement('a');
+    //                 a.style.display = 'none';
+    //                 a.href = url;
+    //                 a.download = title;
+    //                 document.body.appendChild(a);
+    //                 a.click();
+    //                 window.URL.revokeObjectURL(url);
+    //                 Swal.close();
+    //             } catch (error) {
+    //                 console.error('Error downloading image:', error);
+    //                 Swal.showValidationMessage('Download failed');
+    //             }
+    //         }
+    //     });
+    // };
 
     return (
         <div className="flex flex-col items-center space-y-4 min-h-screen mb-10">
             <Helmet>
                 <title>Materials | EduConnect</title>
             </Helmet>
-            <p className='pt-20 text-3xl font-bold text-center pb-6'>Materials</p>
+           
+            <p className='pt-24 text-3xl font-bold text-center pb-4'>Session Material</p>
+
             {bookedSessions.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {bookedSessions.map((session) => (
@@ -117,7 +118,10 @@ const BookedSessionMaterials = () => {
                                                         </a>
                                                     </div>
                                                     <div>
-                                                    <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black  px-8  font-bold my-4" onClick={() => handleShowImage(material.image)}>See Image</button>
+                                                        <NavLink to={`/image/${material._id}`}>
+                                                        <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black  px-8  font-bold my-4">See Image</button>
+                                                        </NavLink>
+                                                    
                                                     </div>
                                                 </li>
                                             ))}
@@ -134,17 +138,17 @@ const BookedSessionMaterials = () => {
                 <p>No booked sessions found.</p>
             )}
 
-            {selectedImage && (
+            {/* {selectedImage && (
                 <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white p-4 rounded shadow-lg relative">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleCloseModal}>✕</button>
-                        <img src={selectedImage} alt="Material" className="w-[80%] md:w-full h-[400px] md:h-[480px]" />
+                        <img src={selectedImage} alt="Material" className="w-[80%] md:w-full h-[400px] md:h-[420px]" />
                         <div className="mt-4 flex justify-center">
                             <button className="btn btn-outline border-0 border-b-4 border-t-2 border-black  px-8 font-bold" onClick={() => handleDownloadImage(selectedImage, 'Material Image')}><span>Download</span> <FiDownload /></button>
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
         </div>
     );
 };

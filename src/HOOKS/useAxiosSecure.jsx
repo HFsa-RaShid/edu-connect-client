@@ -6,7 +6,7 @@
 // import { AuthContext } from "../provider/AuthProvider";
 
 // const axiosSecure = axios.create({
-//     baseURL: 'https://edu-connect-server-one.vercel.app'
+//     baseURL: 'http://localhost:3000'
 // });
 
 // const useAxiosSecure = () => {
@@ -57,7 +57,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
 
 const axiosSecure = axios.create({
-    baseURL: 'https://edu-connect-server-one.vercel.app'
+    baseURL: 'http://localhost:3000'
 });
 const useAxiosSecure = () => {
     const navigate = useNavigate();

@@ -81,7 +81,9 @@ const BookedSessionDetails = () => {
             <Helmet>
                 <title>Session_Details | EduConnect</title>
             </Helmet>
-            <p className="pt-20 text-3xl font-bold text-center">Details</p>
+           
+            <p className='pt-24 text-3xl font-bold text-center pb-4'>Session Details</p>
+           
             <div className="card bg-base-100 shadow-md shadow-black mt-10 text-white" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://i.ibb.co/YXFHRzv/Online-learning-scaled.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }} data-aos = "fade-up">
                 <h2 className="text-center text-2xl font-semibold pt-6">{title}</h2>
                 <div className="card-body text-center">

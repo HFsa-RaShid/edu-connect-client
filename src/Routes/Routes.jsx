@@ -24,6 +24,7 @@ import ManageNotes from "../pages/student/managePersonalNotes/ManageNotes";
 import NoteDetails from "../pages/student/managePersonalNotes/NoteDetails";
 import BookedSessionMaterials from "../pages/student/bookedSessionMaterials/BookedSessionMaterials";
 import ErrorPage from "../pages/errorPage/ErrorPage";
+import Image from "../pages/student/bookedSessionMaterials/Image";
 
 
 export const router = createBrowserRouter([
@@ -128,6 +129,10 @@ export const router = createBrowserRouter([
       {
         path: "/bookedSessionMaterials",
         element: <BookedSessionMaterials></BookedSessionMaterials>,
+      },
+      {
+        path: "/image/:id",
+        element: <Image></Image>,
       },
       
       

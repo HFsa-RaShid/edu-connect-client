@@ -127,7 +127,7 @@ const ViewAllMaterials = () => {
                 <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white p-4 rounded shadow-lg relative">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleCloseModal}>✕</button>
-                        <img src={selectedImage} alt="Material" className="w-full h-auto" />
+                        <img src={selectedImage} alt="Material" className="w-[80%] md:w-full h-[400px] md:h-[420px]" />
                     </div>
                 </div>
             )}

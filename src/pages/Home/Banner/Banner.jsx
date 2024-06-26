@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import banner from '../../../assets/banner.avif'
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { NavLink } from 'react-router-dom';
 
 const Banner = () => {
     useEffect(() => {
@@ -22,7 +23,9 @@ const Banner = () => {
                 <span className='font-bold text-xl'>EduConnect</span> is the #1 global learning platform.* Join our community of 300 million learners using EduConnect’s practice tests, digital flashcards and AI-powered tools to improve their marks and reach their goals.
                 </p>
                 <br></br>
-               
+               <NavLink to='/AllStudySessions'>
+                <button  className="btn btn-outline border-0 border-b-4 border-t-2 border-white text-white px-3 text-xl font-bold ">Find Your Session</button>
+               </NavLink>
             </div>
             
 

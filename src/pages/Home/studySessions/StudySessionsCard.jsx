@@ -14,9 +14,9 @@ const StudySessionsCard = ({ displaySession }) => {
     const isRegistrationOver = new Date(registrationEndDate) < new Date();
 
     return (
-        <div className="card bg-base-100 h-[280px] shadow-xl image-full z-10" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://i.ibb.co/G9XH87b/Hand-holding-a-tablet-with-a-light-hologram-of-a-brain-above-it.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="card border h-[280px] shadow-xl image-full z-10" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://i.ibb.co/G9XH87b/Hand-holding-a-tablet-with-a-light-hologram-of-a-brain-above-it.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             
-            <div className="card-body">
+            <div className="card-body ">
                 <h2 className="card-title">{title}</h2>
                 {
                     description.length > 120 ? 

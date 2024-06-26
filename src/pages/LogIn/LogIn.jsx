@@ -55,7 +55,7 @@ const LogIn = () => {
             
             </div>
             
-            <div className=" md:w-[50%] max-w-sm  bg-base-100 flex items-center ">
+            <div className=" md:w-[50%] max-w-sm  bg-base-100 flex items-center  mx-auto ">
                
             <form className="card-body" onSubmit={handleSignIn}>
             <h1 className="text-4xl text-center font-bold mb-4">Sign In Now!!</h1>

@@ -165,59 +165,50 @@ const Navbar = () => {
                   type="file"
                   accept="image/*"
                   {...register("image", { required: true })}
-                  className="input w-full mt-6"
+                  className=" w-full mt-6 border-none"
                 />
                 {errors.image && <span className="text-red-600">Image is required</span>}
                 <button type="submit" disabled={loading} className="mt-2 py-2 px-4 rounded-xl font-bold border text-black"><LuUpload /></button>
               </form>
             )}
 
-              {/* <form onSubmit={handleSubmit(onSubmit)} className="flex items-center">
-                <input
-                  type="file"
-                  accept="image/*"
-                  {...register("image", { required: true })}
-                  className="input  w-full mt-6"
-                />
-                {errors.image && <span className="text-red-600">Image is required</span>}
-                <button type="submit" disabled={loading} className="mt-2 py-2 px-4 rounded-xl font-bold border  text-black"><LuUpload /></button>
-              </form> */}
+             
             
             <p className="mt-6 text-center text-xl font-bold">{userData && userData.name}</p>
             <p className="text-center mb-6">({userData.role})</p>
             <hr></hr>
             
             <NavLink  to='/' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }>Home</NavLink>
             
             
              {userData && userData.role === "tutor" && (
               <>
                 <NavLink to='/create-session' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }>Create Study Session</NavLink>
                 <NavLink to='/viewMySession' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }>View Study Sessions</NavLink>
                 <NavLink to='/studyMaterials' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }>Upload materials</NavLink>
                 <NavLink  to='/viewMaterials' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }> View all materials</NavLink>
               </>
             )}
             { isAdmin && (
               <>
                 <NavLink to='/viewUsers' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }>View Users</NavLink>
                 <NavLink to='/viewStudySession' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }>View all Study Sessions</NavLink>
                 <NavLink to='/ViewAllMaterials' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }>View all materials</NavLink>
               </>
             ) 
@@ -225,16 +216,16 @@ const Navbar = () => {
             {userData && userData.role === "student" && (
               <>
                 <NavLink to='/bookedSession' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }>View booked session</NavLink>
                 <NavLink to='/createNotes' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }>Create note</NavLink>
                 <NavLink to='/managePersonalNotes' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }>Manage personal notes</NavLink>
                 <NavLink to='/bookedSessionMaterials' className={({ isActive }) =>
-                            isActive ? 'text-white bg-black block py-2 rounded-2xl pl-2' : 'block py-2'
+                            isActive ? 'text-white bg-black block py-2 rounded-xl pl-2' : 'block py-2'
                         }>View Materials</NavLink>
               
               </>
