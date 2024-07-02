@@ -3,6 +3,7 @@
 + email: educonnect@gmail.com
 + password: EduConnect12#
 # [Live URL] (https://educonnect-9f39f.web.app/)
+# [Server github] (https://github.com/HFsa-RaShid/edu-connect-server)
 
 # Key Concepts
 EduConnect aims to streamline educational activities by providing a centralized platform where students can easily find study sessions, tutors can manage sessions and materials, and administrators can oversee and facilitate the entire process. It solves the problem of fragmented educational interactions by offering a cohesive environment for learning and collaboration.
@@ -24,9 +25,13 @@ EduConnect provides dynamic session management features that facilitate seamless
 
 # Local Setup Guide
 To run EduConnect locally on your machine, follow these steps:
-+ Clone the Repository:
-  + git clone https://github.com/your_username/educonnect.git
-  + cd educonnect
++ Clone the Client Repository:
+  + git clone https://github.com/HFsa-RaShid/edu-connect-client.git
+  + cd edu-connect-client
+
++ Clone the Client Repository:
+  + git clone https://github.com/HFsa-RaShid/edu-connect-server.git
+  + cd edu-connect-server
 
 + Install Dependencies:
   + npm install
