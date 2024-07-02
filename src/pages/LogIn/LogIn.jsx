@@ -48,7 +48,7 @@ const LogIn = () => {
                 <p className="text-2xl">Sign in to EduConnect to get started!</p>
                 <br></br>
                 <p className="text-[14px]">
-                By logging in to Khan Academy, you agree to our 
+                By logging in to EduConnect, you agree to our 
                 </p>
                 <p className="text-[14px]"><a href="#" className="underline">Terms of use</a> and <a href="#" className="underline">Privacy Policy</a></p>
                 </div>
