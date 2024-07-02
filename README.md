@@ -29,7 +29,7 @@ To run EduConnect locally on your machine, follow these steps:
   + git clone https://github.com/HFsa-RaShid/edu-connect-client.git
   + cd edu-connect-client
 
-+ Clone the Client Repository:
++ Clone the Server Repository:
   + git clone https://github.com/HFsa-RaShid/edu-connect-server.git
   + cd edu-connect-server
 
@@ -37,7 +37,7 @@ To run EduConnect locally on your machine, follow these steps:
   + npm install
 
 + Set Environment Variables:
-  + Create a .env file in the root directory and configure necessary environment variables such as database connection URI, JWT secret key, and OAuth credentials.
+  + Create a .env file in the root directory and configure necessary environment variables such as database connection URI, JWT secret key, and Auth credentials.
 
 + Start the Server:
   + Install nodemon globally (if you haven't already):npm install -g nodemon
